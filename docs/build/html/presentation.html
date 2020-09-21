@@ -1,0 +1,243 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Description des besoins de l’Application &#8212; Projet-Dev-Java 1 documentation</title>
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Développement fullstack d’une application web avec Spring &amp; Angular" href="index.html" />
+    <link rel="shortcut icon" type="image/png" href="_static/py.png" />
+    
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    
+     
+
+  </head><body>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Développement fullstack d’une application web avec Spring &amp; Angular"
+             accesskey="P">previous</a> |</li>
+    <li><img src="_static/py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://www.python.org/">Python</a> &#187;</li>
+    
+    <a href="index.html">Projet-Dev-Java 1 documentation</a> &#187;
+    
+
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+         |
+    </li>
+
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="description-des-besoins-de-l-application">
+<h1>Description des besoins de l’Application<a class="headerlink" href="#description-des-besoins-de-l-application" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="expression-des-besoins">
+<h2>Expression des Besoins<a class="headerlink" href="#expression-des-besoins" title="Permalink to this headline">¶</a></h2>
+<p>L’objectif de ce projet est donc de produire un outil permettant aux PME de gérer et inserer dans leur système les articles ou services qu’elle propose, de gerer d’anciens et nouveaux clients ou prospect, ainsi que de fournir devis et factures pour ces derniers.</p>
+<p>Pour un <strong>client</strong> ,les informations que l’on souhaite stockées sont:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>un numérs o d’identifiant</li>
+<li>un nom de société</li>
+<li>un nom</li>
+<li>un prénom</li>
+<li>une adresse</li>
+<li>un numéro de téléphone</li>
+<li>une adresse mail</li>
+<li>s’il est client, prospect ou, s’il s’agit d’un fournisseur</li>
+<li>un commentaire pour une breve description</li>
+</ol>
+</div></blockquote>
+<dl class="docutils">
+<dt>Pour les <strong>articles et services</strong> , on souhaite stocker les informations suivantes:</dt>
+<dd><ol class="first last arabic simple">
+<li>un numéro d’identification (une reférence)</li>
+<li>l’appartenance à une catégorie</li>
+<li>une désignation (descriptif bref de l’article)</li>
+<li>une description détaillé de l’article</li>
+<li>une quantité à vendre ( unité de vente)</li>
+<li>un prix à l’unité HT</li>
+<li>une tva à appliquer à l’article</li>
+<li>un prix à l’unité TTC</li>
+<li>un stock disponible ou non</li>
+</ol>
+</dd>
+<dt>Pour les <strong>devis</strong> , la PME souhaite avoir comme information</dt>
+<dd><ol class="first last arabic simple">
+<li>un numéro d’identification</li>
+<li>la date du devis</li>
+<li>les informations du clients</li>
+<li>l’adresse du client</li>
+<li>la liste des articles necessaires</li>
+<li>le montant de chaque articles</li>
+<li>les quantités pour chaque articles en fonction de l’unité de vente</li>
+<li>le montant global pour chaque article</li>
+<li>le montant total HT</li>
+<li>la tva appliquable</li>
+<li>le montant total TTC</li>
+<li>le moyen de paiement: espece, carte, cheque</li>
+<li>le delai de paiement: comptant,acompte</li>
+<li>la validation, le refus ou attente de la part du client.</li>
+</ol>
+</dd>
+<dt>Pour les <strong>factures</strong> , on aura a peu près les mêmes informations, ie:</dt>
+<dd><ol class="first last arabic simple">
+<li>un numéro d’identification</li>
+<li>la date de la facturation</li>
+<li>la date de paiement</li>
+<li>les informations du clients</li>
+<li>l’adresse du client</li>
+<li>l’adresse de livraison</li>
+<li>la liste des articles vendus</li>
+<li>le montant de chaque articles</li>
+<li>les quantités pour chaque articles en fonction de l’unité de vente</li>
+<li>le montant global pour chaque article</li>
+<li>le montant total HT</li>
+<li>la tva appliquable</li>
+<li>le montant total TTC</li>
+<li>l’état de la facture: payé ou en attente</li>
+</ol>
+</dd>
+</dl>
+</div>
+<div class="section" id="product-backlog">
+<h2>Product Backlog<a class="headerlink" href="#product-backlog" title="Permalink to this headline">¶</a></h2>
+<p>Voici une liste non-exhaustive des fonctionnalités attendues d’une PME avec une telle application. Le temps m’étant compté, j’ai décidé de travailler avec une méthodologie Scrum pour pouvoir avancer le plus possible et rendre, même si je n’ai pas tout accompli, un projet présentable et fonctionnel.</p>
+<p>Pour la <strong>“section Client”</strong> </p>
+<p><em>En tant qu’utilisateur</em>, je souhaite pouvoir afficher soit le listing de tous mes clients, soit de mes  prospects, soit celui de mes fournisseurs.</p>
+<p><em>En tant qu’utilisateur</em>, je souhaite pouvoir, une fois mon listing afficher, selectionner un de mes contacts (client/prospect/fournisseur) et avoir une vue sur toutes ses propriétés.</p>
+<p><em>En tant qu’utilisateur</em>, je souhaite pouvoir une fois mon listing afficher, modifier ou supprimer le contact que j’aurai sélectionné.</p>
+<p><strong>En tant qu’utilisateur</strong> , je souhaite pouvoir afficher le listing de tous mes articles/services.
+<strong>En tant qu’utilisateur</strong> , je souhaite pouvoir afficher le listing de tous mes devis.
+<strong>En tant qu’utilisateur</strong> , je souhaite pouvoir afficher le listing de toutes mes factures.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Description des besoins de l’Application</a><ul>
+<li><a class="reference internal" href="#expression-des-besoins">Expression des Besoins</a></li>
+<li><a class="reference internal" href="#product-backlog">Product Backlog</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Développement fullstack d’une application web avec Spring &amp; Angular</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/presentation.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Développement fullstack d’une application web avec Spring &amp; Angular"
+             >previous</a> |</li>
+    <li><img src="_static/py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://www.python.org/">Python</a> &#187;</li>
+    
+    <a href="index.html">Projet-Dev-Java 1 documentation</a> &#187;
+    
+
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+         |
+    </li>
+
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; <a href="copyright.html">Copyright</a> 2020,www.doriandelaval.fr.
+    <br />
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br />
+    <br />
+
+    Last updated on None.
+    
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+
+  </body>
+</html>
