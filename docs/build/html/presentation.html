@@ -18,6 +18,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Creation de la base de données" href="SQL.html" />
     <link rel="prev" title="Développement fullstack d’une application web avec Spring &amp; Angular" href="index.html" />
     <link rel="shortcut icon" type="image/png" href="_static/py.png" />
     
@@ -32,6 +33,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="SQL.html" title="Creation de la base de données"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Développement fullstack d’une application web avec Spring &amp; Angular"
              accesskey="P">previous</a> |</li>
@@ -72,21 +76,24 @@
 <p>L’objectif de ce projet est donc de produire un outil permettant aux PME de gérer et inserer dans leur système les articles ou services qu’elle propose, de gerer d’anciens et nouveaux clients ou prospect, ainsi que de fournir devis et factures pour ces derniers.</p>
 <p>Pour un <strong>client</strong> ,les informations que l’on souhaite stockées sont:</p>
 <blockquote>
-<div><ol class="arabic simple">
-<li>un numérs o d’identifiant</li>
+<div><ul class="simple">
+<li>un numéro d’identifiant</li>
 <li>un nom de société</li>
 <li>un nom</li>
 <li>un prénom</li>
 <li>une adresse</li>
+<li>un code postal</li>
+<li>une ville</li>
 <li>un numéro de téléphone</li>
 <li>une adresse mail</li>
 <li>s’il est client, prospect ou, s’il s’agit d’un fournisseur</li>
+<li>une date de contact</li>
 <li>un commentaire pour une breve description</li>
-</ol>
+</ul>
 </div></blockquote>
 <dl class="docutils">
 <dt>Pour les <strong>articles et services</strong> , on souhaite stocker les informations suivantes:</dt>
-<dd><ol class="first last arabic simple">
+<dd><ul class="first last simple">
 <li>un numéro d’identification (une reférence)</li>
 <li>l’appartenance à une catégorie</li>
 <li>une désignation (descriptif bref de l’article)</li>
@@ -96,10 +103,10 @@
 <li>une tva à appliquer à l’article</li>
 <li>un prix à l’unité TTC</li>
 <li>un stock disponible ou non</li>
-</ol>
+</ul>
 </dd>
 <dt>Pour les <strong>devis</strong> , la PME souhaite avoir comme information</dt>
-<dd><ol class="first last arabic simple">
+<dd><ul class="first last simple">
 <li>un numéro d’identification</li>
 <li>la date du devis</li>
 <li>les informations du clients</li>
@@ -114,10 +121,10 @@
 <li>le moyen de paiement: espece, carte, cheque</li>
 <li>le delai de paiement: comptant,acompte</li>
 <li>la validation, le refus ou attente de la part du client.</li>
-</ol>
+</ul>
 </dd>
 <dt>Pour les <strong>factures</strong> , on aura a peu près les mêmes informations, ie:</dt>
-<dd><ol class="first last arabic simple">
+<dd><ul class="first last simple">
 <li>un numéro d’identification</li>
 <li>la date de la facturation</li>
 <li>la date de paiement</li>
@@ -132,7 +139,7 @@
 <li>la tva appliquable</li>
 <li>le montant total TTC</li>
 <li>l’état de la facture: payé ou en attente</li>
-</ol>
+</ul>
 </dd>
 </dl>
 </div>
@@ -167,6 +174,9 @@
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
                         title="previous chapter">Développement fullstack d’une application web avec Spring &amp; Angular</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="SQL.html"
+                        title="next chapter">Creation de la base de données</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -196,6 +206,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="SQL.html" title="Creation de la base de données"
+             >next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Développement fullstack d’une application web avec Spring &amp; Angular"
              >previous</a> |</li>

@@ -9,58 +9,61 @@ L'objectif de ce projet est donc de produire un outil permettant aux PME de gér
 
 Pour un \ **client** \ ,les informations que l'on souhaite stockées sont:
 
- #. un numérs o d'identifiant
- #. un nom de société 
- #. un nom
- #. un prénom
- #. une adresse
- #. un numéro de téléphone
- #. une adresse mail
- #. s'il est client, prospect ou, s'il s'agit d'un fournisseur
- #. un commentaire pour une breve description
+ * un numéro d'identifiant
+ * un nom de société 
+ * un nom
+ * un prénom
+ * une adresse
+ * un code postal
+ * une ville
+ * un numéro de téléphone
+ * une adresse mail
+ * s'il est client, prospect ou, s'il s'agit d'un fournisseur
+ * une date de contact 
+ * un commentaire pour une breve description
 
 Pour les \ **articles et services** \, on souhaite stocker les informations suivantes:
- #. un numéro d'identification (une reférence)
- #. l'appartenance à une catégorie
- #. une désignation (descriptif bref de l'article)
- #. une description détaillé de l'article
- #. une quantité à vendre ( unité de vente)
- #. un prix à l'unité HT
- #. une tva à appliquer à l'article
- #. un prix à l'unité TTC
- #. un stock disponible ou non
+ * un numéro d'identification (une reférence)
+ * l'appartenance à une catégorie
+ * une désignation (descriptif bref de l'article)
+ * une description détaillé de l'article
+ * une quantité à vendre ( unité de vente)
+ * un prix à l'unité HT
+ * une tva à appliquer à l'article
+ * un prix à l'unité TTC
+ * un stock disponible ou non
 
 Pour les \ **devis** \ , la PME souhaite avoir comme information
- #. un numéro d'identification
- #. la date du devis
- #. les informations du clients
- #. l'adresse du client
- #. la liste des articles necessaires
- #. le montant de chaque articles
- #. les quantités pour chaque articles en fonction de l'unité de vente
- #. le montant global pour chaque article
- #. le montant total HT
- #. la tva appliquable
- #. le montant total TTC
- #. le moyen de paiement: espece, carte, cheque
- #. le delai de paiement: comptant,acompte 
- #. la validation, le refus ou attente de la part du client.
+ * un numéro d'identification
+ * la date du devis
+ * les informations du clients
+ * l'adresse du client
+ * la liste des articles necessaires
+ * le montant de chaque articles
+ * les quantités pour chaque articles en fonction de l'unité de vente
+ * le montant global pour chaque article
+ * le montant total HT
+ * la tva appliquable
+ * le montant total TTC
+ * le moyen de paiement: espece, carte, cheque
+ * le delai de paiement: comptant,acompte 
+ * la validation, le refus ou attente de la part du client.
 
 Pour les \ **factures** \, on aura a peu près les mêmes informations, ie:
- #. un numéro d'identification
- #. la date de la facturation
- #. la date de paiement
- #. les informations du clients
- #. l'adresse du client
- #. l'adresse de livraison
- #. la liste des articles vendus
- #. le montant de chaque articles
- #. les quantités pour chaque articles en fonction de l'unité de vente
- #. le montant global pour chaque article
- #. le montant total HT
- #. la tva appliquable
- #. le montant total TTC
- #. l'état de la facture: payé ou en attente
+ * un numéro d'identification
+ * la date de la facturation
+ * la date de paiement
+ * les informations du clients
+ * l'adresse du client
+ * l'adresse de livraison
+ * la liste des articles vendus
+ * le montant de chaque articles
+ * les quantités pour chaque articles en fonction de l'unité de vente
+ * le montant global pour chaque article
+ * le montant total HT
+ * la tva appliquable
+ * le montant total TTC
+ * l'état de la facture: payé ou en attente
 
 
 Product Backlog

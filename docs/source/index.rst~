@@ -10,7 +10,8 @@ Développement fullstack d'une application web avec Spring & Angular
 Presentation du projet
 **********************
 
-Le but de ce projet est de creer une application web de type CRM (Customer RelationShip Management) pour les PME.Cette application permettra d'enregistrer et optimiser les intéractions entre la dite PME et ses clients ou prospects
+Le but de ce projet est de creer une application web de type CRM (Customer RelationShip Management) pour les PME.
+Cette application permettra d'enregistrer et optimiser les intéractions entre la dite PME et ses clients/prospects
 
 .. toctree::
    :maxdepth: 2

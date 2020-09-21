@@ -18,6 +18,7 @@ Cette application permettra d'enregistrer et optimiser les intéractions entre l
    :caption: Sommaire:
 
    presentation
+   SQL
 
 Indices and tables
 ==================
