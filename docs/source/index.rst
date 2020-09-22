@@ -19,6 +19,7 @@ Cette application permettra d'enregistrer et optimiser les intéractions entre l
 
    presentation
    SQL
+   mavenDependence
 
 Indices and tables
 ==================
