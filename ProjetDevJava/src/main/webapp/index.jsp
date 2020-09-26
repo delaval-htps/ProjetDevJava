@@ -1,5 +1,5 @@
 <html>
 <body>
-<h2>Hello World!</h2>
+<h2>Bienvenue sur la page d'accueil  index.jsp !! </h2>
 </body>
 </html>

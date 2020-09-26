@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"fr.doriandelaval.jdbc","l":"Connexion"}]
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"fr.doriandelaval.controller","l":"AppController"}]

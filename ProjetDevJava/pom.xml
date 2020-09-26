@@ -27,6 +27,9 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- Dépendance de Spring -->
+
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -35,7 +38,12 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Dépendeance de Spring -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>5.2.8.RELEASE</version>
+		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
 		<dependency>
@@ -43,6 +51,7 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>5.2.8.RELEASE</version>
 		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -86,6 +95,18 @@
 			<artifactId>c3p0</artifactId>
 			<version>0.9.1.2</version>
 		</dependency>
+		
+		<!--  pour valider l'annotation @AnnotationDrivenConfig et faire une config class webmvc + xml pour hibernate -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.1.3.Final</version>
+		</dependency>
 
 		<!-- dépendeances pour les servlets -->
 
@@ -107,6 +128,15 @@
 			<groupId>javax.servlet.jsp.jstl</groupId>
 			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
 			<version>1.2.2</version>
+		</dependency>
+
+		<!-- dépendance de jackson -->
+
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.11.2</version>
 		</dependency>
 
 		<!-- autres dependances -->
@@ -140,7 +170,7 @@
 			<artifactId>mchange-commons-java</artifactId>
 			<version>0.2.20</version>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>

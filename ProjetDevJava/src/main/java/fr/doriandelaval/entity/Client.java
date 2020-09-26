@@ -17,7 +17,8 @@ import javax.persistence.Table;
  *
  */
 @Entity // permet de faire le lien avec la table client dans la bdd
-@Table(name = "client")
+@Table(name = "customer")
+
 public class Client {
 
 //attributs
@@ -40,7 +41,7 @@ public class Client {
 	private String adresse;
 
 	@Column
-	private int codePostal;
+	private Integer codePostal;
 
 	@Column
 	private String ville;
@@ -56,7 +57,7 @@ public class Client {
 	 */
 
 	@Column
-	private char etatCustomer;
+	private Character etatCustomer; // utilisation de Character et non char car primitive ne peuvent pas etre nul
 	/*
 	 * date de première prise de contact avec le client
 	 */
@@ -76,8 +77,26 @@ public class Client {
 
 	}
 
-	// getter & setters
+	
 
+	public Client(int id, String nomSociete, String nom, String prenom, String adresse, int codePostal, String ville,
+			int numeroTel, String email, char etatCustomer, Date dateContact, String commentaire) {
+		super();
+		this.id = id;
+		this.nomSociete = nomSociete;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.numeroTel = numeroTel;
+		this.email = email;
+		this.etatCustomer = etatCustomer;
+		this.dateContact = dateContact;
+		this.commentaire = commentaire;
+	}
+	// getter & setters
+	
 	/**
 	 * retourne l'id du client
 	 * 
@@ -294,5 +313,17 @@ public class Client {
 	public void setCommentaire(String commentaire) {
 		this.commentaire = commentaire;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "Client [id=" + id + ", nomSociete=" + nomSociete + ", nom=" + nom + ", prenom=" + prenom + ", adresse="
+				+ adresse + ", codePostal=" + codePostal + ", ville=" + ville + ", numeroTel=" + numeroTel + ", email="
+				+ email + ", etatCustomer=" + etatCustomer + ", dateContact=" + dateContact + ", commentaire="
+				+ commentaire + "]";
+	}
+	
+	
 
 }

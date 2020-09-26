@@ -15,11 +15,13 @@ Cette application permettra d'enregistrer et optimiser les intéractions entre l
 
 .. toctree::
    :maxdepth: 2
-   :caption: Sommaire:
 
    presentation
    SQL
    mavenDependence
+   SpringConfigClass
+
+
 
 Indices and tables
 ==================

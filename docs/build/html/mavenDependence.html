@@ -2,12 +2,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Maven et ses dépendances &#8212; Projet-Dev-Java 1 documentation</title>
-    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <title>Maven et ses dépendances &#8212; Documentation Projet-Dev-Java 1</title>
+    <link rel="stylesheet" href="_static/myStyle.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -15,9 +15,11 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Utilisation de Spring" href="SpringConfigClass.html" />
     <link rel="prev" title="Creation de la base de données" href="SQL.html" />
     <link rel="shortcut icon" type="image/png" href="_static/py.png" />
     
@@ -30,16 +32,19 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
+          <a href="genindex.html" title="Index général"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="SpringConfigClass.html" title="Utilisation de Spring"
+             accesskey="N">suivant</a> |</li>
+        <li class="right" >
           <a href="SQL.html" title="Creation de la base de données"
-             accesskey="P">previous</a> |</li>
+             accesskey="P">précédent</a> |</li>
     <li><img src="_static/py.png" alt=""
              style="vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://www.python.org/">Python</a> &#187;</li>
     
-    <a href="index.html">Projet-Dev-Java 1 documentation</a> &#187;
+    <a href="index.html">Documentation Projet-Dev-Java 1</a> &#187;
     
 
     <li class="right">
@@ -47,7 +52,7 @@
 
     <div class="inline-search" style="display: none" role="search">
         <form class="inline-search" action="search.html" method="get">
-          <input placeholder="Quick search" type="text" name="q" />
+          <input placeholder="Recherche rapide" type="text" name="q" />
           <input type="submit" value="Go" />
           <input type="hidden" name="check_keywords" value="yes" />
           <input type="hidden" name="area" value="default" />
@@ -66,29 +71,30 @@
           <div class="body" role="main">
             
   <div class="section" id="maven-et-ses-dependances">
-<h1>Maven et ses dépendances<a class="headerlink" href="#maven-et-ses-dependances" title="Permalink to this headline">¶</a></h1>
+<h1>Maven et ses dépendances<a class="headerlink" href="#maven-et-ses-dependances" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="pourquoi-maven">
-<h2>Pourquoi maven?<a class="headerlink" href="#pourquoi-maven" title="Permalink to this headline">¶</a></h2>
+<h2>Pourquoi maven?<a class="headerlink" href="#pourquoi-maven" title="Lien permanent vers ce titre">¶</a></h2>
 <p>j’ai décidé de développer cette application avec maven afin de pouvoir récupérer quelque soit la plateforme de développement toutes les dépendances nécessaires à son bon focntionnement. Et ainsi rendre mon application déployable sur n’importe quel serveur.
 Maven me permettra également de lancer les tests unitaires avec Junit.</p>
+</div>
 <div class="section" id="dependances-de-maven">
-<h3>Dépendances de maven<a class="headerlink" href="#dependances-de-maven" title="Permalink to this headline">¶</a></h3>
+<h2>Dépendances de maven<a class="headerlink" href="#dependances-de-maven" title="Lien permanent vers ce titre">¶</a></h2>
 <p>il est a noté que toutes les dépendances ont été téléchargées sur le repository mvn.</p>
 <p>De plus par défaut, à la création du projet Maven, nous avons les dépendances de Junit pour les Test et nous avons directement ajouter javax servlet pour les utiliser JSP
 ci dessous la liste de toutes les dependances dont nous avons besoins pour notre projet:</p>
-<p><strong>Spring Web MVC</strong>pour pouvoir utiliser le framework Spring (Ioc et injections de dépendance)</p>
+<p><strong>Spring Web MVC</strong> pour utiliser Spring dans la couche Vue</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
 <span class="nt">&lt;artifactId&gt;</span>spring-webmvc<span class="nt">&lt;/artifactId&gt;</span>
 <span class="nt">&lt;version&gt;</span>5.2.8.RELEASE<span class="nt">&lt;/version&gt;</span>
 </pre></div>
 </div>
-<p><strong>Spring-jdbc</strong>pour utiliser Spring avec notre bdd SQL</p>
+<p><strong>Spring-jdbc</strong> pour utiliser Spring avec notre bdd SQL</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
 <span class="nt">&lt;artifactId&gt;</span>spring-jdbc<span class="nt">&lt;/artifactId&gt;</span>
 <span class="nt">&lt;version&gt;</span>5.2.8.RELEASE<span class="nt">&lt;/version&gt;</span>
 </pre></div>
 </div>
-<p><strong>Spring-orm</strong>pour creer et lier nos classes entités a la bdd</p>
+<p><strong>Spring-orm</strong> pour gérer nos classes entités a la bdd</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="c">&lt;!-- https://mvnrepository.com/artifact/org.springframework/spring-orm --&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
@@ -97,7 +103,7 @@ ci dessous la liste de toutes les dependances dont nous avons besoins pour notre
 <span class="nt">&lt;/dependency&gt;</span>
 </pre></div>
 </div>
-<p><strong>Mysql</strong>pour la connection avec la bdd SQL</p>
+<p><strong>Mysql</strong> pour la connection avec la bdd SQL</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="c">&lt;!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java --&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
 <span class="nt">&lt;groupId&gt;</span>mysql<span class="nt">&lt;/groupId&gt;</span>
@@ -106,7 +112,7 @@ ci dessous la liste de toutes les dependances dont nous avons besoins pour notre
 <span class="nt">&lt;/dependency&gt;</span>
 </pre></div>
 </div>
-<p><strong>hibernate</strong>pour la gestion du CRUD avec les JPA</p>
+<p><strong>hibernate</strong> pour la gestion du CRUD avec la JPA</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="c">&lt;!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core --&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
 <span class="nt">&lt;groupId&gt;</span>org.hibernate<span class="nt">&lt;/groupId&gt;</span>
@@ -128,7 +134,7 @@ ci dessous la liste de toutes les dependances dont nous avons besoins pour notre
 <span class="nt">&lt;/dependency&gt;</span>
 </pre></div>
 </div>
-<p><strong>servlet</strong>pour la gestion des servlets</p>
+<p><strong>servlet</strong> pour la gestion des servlets</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="c">&lt;!-- https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl-api --&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>javax.servlet.jsp.jstl<span class="nt">&lt;/groupId&gt;</span>
@@ -150,7 +156,7 @@ ci dessous la liste de toutes les dependances dont nous avons besoins pour notre
 <span class="nt">&lt;/dependency&gt;</span>
 </pre></div>
 </div>
-<p><strong>autres dependances</strong>pour la syntaxe ,grammaire, la modification de class en java et xml</p>
+<p><strong>autres dependances</strong> pour la syntaxe ,grammaire, la modification de class en java et xml</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
 <span class="nt">&lt;groupId&gt;</span>antlr<span class="nt">&lt;/groupId&gt;</span>
 <span class="nt">&lt;artifactId&gt;</span>antlr<span class="nt">&lt;/artifactId&gt;</span>
@@ -184,7 +190,6 @@ ci dessous la liste de toutes les dependances dont nous avons besoins pour notre
 </div>
 </div>
 </div>
-</div>
 
 
           </div>
@@ -192,29 +197,26 @@ ci dessous la liste de toutes les dependances dont nous avons besoins pour notre
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Maven et ses dépendances</a><ul>
-<li><a class="reference internal" href="#pourquoi-maven">Pourquoi maven?</a><ul>
-<li><a class="reference internal" href="#dependances-de-maven">Dépendances de maven</a></li>
+<h3><a href="index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="presentation.html">Description des besoins de l’Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SQL.html">Creation de la base de données</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Maven et ses dépendances</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pourquoi-maven">Pourquoi maven?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependances-de-maven">Dépendances de maven</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="SpringConfigClass.html">Utilisation de Spring</a></li>
 </ul>
 
-  <h4>Previous topic</h4>
+  <h4>Sujet précédent</h4>
   <p class="topless"><a href="SQL.html"
-                        title="previous chapter">Creation de la base de données</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/mavenDependence.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
+                        title="Chapitre précédent">Creation de la base de données</a></p>
+  <h4>Sujet suivant</h4>
+  <p class="topless"><a href="SpringConfigClass.html"
+                        title="Chapitre suivant">Utilisation de Spring</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>Recherche rapide</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -233,16 +235,19 @@ ci dessous la liste de toutes les dependances dont nous avons besoins pour notre
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
+          <a href="genindex.html" title="Index général"
              >index</a></li>
         <li class="right" >
+          <a href="SpringConfigClass.html" title="Utilisation de Spring"
+             >suivant</a> |</li>
+        <li class="right" >
           <a href="SQL.html" title="Creation de la base de données"
-             >previous</a> |</li>
+             >précédent</a> |</li>
     <li><img src="_static/py.png" alt=""
              style="vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://www.python.org/">Python</a> &#187;</li>
     
-    <a href="index.html">Projet-Dev-Java 1 documentation</a> &#187;
+    <a href="index.html">Documentation Projet-Dev-Java 1</a> &#187;
     
 
     <li class="right">
@@ -250,7 +255,7 @@ ci dessous la liste de toutes les dependances dont nous avons besoins pour notre
 
     <div class="inline-search" style="display: none" role="search">
         <form class="inline-search" action="search.html" method="get">
-          <input placeholder="Quick search" type="text" name="q" />
+          <input placeholder="Recherche rapide" type="text" name="q" />
           <input type="submit" value="Go" />
           <input type="hidden" name="check_keywords" value="yes" />
           <input type="hidden" name="area" value="default" />
@@ -271,7 +276,7 @@ ci dessous la liste de toutes les dependances dont nous avons besoins pour notre
 <br />
     <br />
 
-    Last updated on None.
+    Mis à jour le None.
     
     <br />
 

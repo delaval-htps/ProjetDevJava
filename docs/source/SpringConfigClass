@@ -1,6 +1,0 @@
-****************************
-Spring avec une Config Class
-****************************
-
-Dans ce projet , nous avons décidé d'utiliser le framework Spring pour profier du concept de l'inversion de controle et des injections de dépendance.
-Le but étant de pouvoir utiliser des interfaces autant pour la couche service que pour la couche DAO. 

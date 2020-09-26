@@ -9,14 +9,14 @@ j'ai décidé de développer cette application avec maven afin de pouvoir récup
 Maven me permettra également de lancer les tests unitaires avec Junit.
 
 Dépendances de maven
-====================
+********************
 
 il est a noté que toutes les dépendances ont été téléchargées sur le repository mvn.
 
 De plus par défaut, à la création du projet Maven, nous avons les dépendances de Junit pour les Test et nous avons directement ajouter javax servlet pour les utiliser JSP 
 ci dessous la liste de toutes les dependances dont nous avons besoins pour notre projet:
 
-\ **Spring Web MVC**\ pour pouvoir utiliser le framework Spring (Ioc et injections de dépendance)
+**Spring Web MVC** pour utiliser Spring dans la couche Vue
 
 .. code-block:: xml
 
@@ -24,7 +24,7 @@ ci dessous la liste de toutes les dependances dont nous avons besoins pour notre
     <artifactId>spring-webmvc</artifactId>
     <version>5.2.8.RELEASE</version>
 
-\ **Spring-jdbc**\ pour utiliser Spring avec notre bdd SQL
+**Spring-jdbc** pour utiliser Spring avec notre bdd SQL
 
 .. code-block:: xml
 
@@ -32,7 +32,7 @@ ci dessous la liste de toutes les dependances dont nous avons besoins pour notre
     <artifactId>spring-jdbc</artifactId>
     <version>5.2.8.RELEASE</version>
 
-\ **Spring-orm**\ pour creer et lier nos classes entités a la bdd
+**Spring-orm** pour gérer nos classes entités a la bdd
 
 .. code-block:: xml
 
@@ -43,7 +43,7 @@ ci dessous la liste de toutes les dependances dont nous avons besoins pour notre
         <version>5.2.8.RELEASE</version>
     </dependency>
 
-\ **Mysql**\ pour la connection avec la bdd SQL
+**Mysql** pour la connection avec la bdd SQL
 
 .. code-block:: xml
 
@@ -54,7 +54,7 @@ ci dessous la liste de toutes les dependances dont nous avons besoins pour notre
     <version>8.0.21</version>
     </dependency>
 
-\ **hibernate**\ pour la gestion du CRUD avec les JPA
+**hibernate** pour la gestion du CRUD avec la JPA
 
 .. code-block:: xml
 
@@ -78,7 +78,7 @@ ci dessous la liste de toutes les dependances dont nous avons besoins pour notre
       <version>0.9.1.2</version>
     </dependency>
     
-\ **servlet**\ pour la gestion des servlets 
+**servlet** pour la gestion des servlets 
 
 .. code-block:: xml
 
@@ -102,7 +102,7 @@ ci dessous la liste de toutes les dependances dont nous avons besoins pour notre
         <version>1.2.2</version>
     </dependency>
 
-\ **autres dependances**\ pour la syntaxe ,grammaire, la modification de class en java et xml
+**autres dependances** pour la syntaxe ,grammaire, la modification de class en java et xml
 
 .. code-block:: xml
 

@@ -47,7 +47,7 @@ master_doc = 'index'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = "fr" 
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -83,6 +83,8 @@ html_static_path = ['_static']
 # default: ``['localtoc.html', 'relations.html', 'sourcelink.html',
 # 'searchbox.html']``.
 #
-# html_sidebars = {}
+html_sidebars = {'**': ['globaltoc.html', 'relations.html', 'searchbox.html'] }
+
 #---sphinx-themes-----
 html_theme = 'python_docs_theme'
+html_style = 'myStyle.css'

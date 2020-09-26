@@ -1,3 +1,5 @@
-body{
-	font-size : 2px;
+@import  url("pydoctheme.css");
+
+h1{
+	color: red;
 }
