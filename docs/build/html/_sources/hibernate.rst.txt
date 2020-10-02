@@ -11,3 +11,78 @@ So you have to write:
 List<GifModel> textList = session.createQuery("from GifModel").list();
 
 Can not set char field fr.doriandelaval.entity.Client.etatCustomer to null value
+
+databinding hibernate Spring
+****************************
+
+databinding 
+===========
+
+databinding avec spring avec **@ModelAttribut("String de désignation", class instance)**  en parametre pour directement recupérer dans une jsp un client a updater ou un nouveau client.
+
+ .. code-block:: java
+
+    @PostMapping("/update")
+    public String updateForm(@ModelAttribute("updateClient") Client client) {
+        clientService.saveClient(client);
+        return ("redirect:/client/list");
+    }
+
+ .. note:: 
+    Ne pas oublier d'utiliser les tags <form:form> de spring avec modelAttribut pour faire le binding !
+
+
+.. code-block::  html
+
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+    <form:form action="processForm" modelAttribute="utilisateur" >
+        Prénom: <form:input path="prenom" />
+        <br><br>
+        Nom: <form:input path="nom" />
+        <br><br>
+        <input type="submit" value="valider"/>
+    </form:form>
+
+il faut donc pour persister des modification ou un nouveeu client :
+* une methode qui renvoie le formulaire pour updater un client : elle a besoin de d'un parametre qui est l'id du client a modifier 
+  
+   .. code-block:: java
+
+    /**
+     >* retourne le formulaire d'un client sélectionné dans la liste client avec son
+     * id récupéré: champ prérempli avec les elements du client selectionné
+     * 
+     * @param id
+     * @param model
+     * @return la jsp formulaire pour modifier le client
+     */
+    @GetMapping("/formClientId")
+    public String updateClient(@RequestParam("id") int id, Model model) {
+        model.addAttribute("updateClient", clientService.getClient(id));
+        return ("updateClient");
+    }
+
+* une methode qui renvoie également le formulaire mais qui va créer un nouveau client avant pour le transmettre a la jsp: 
+  
+   .. code-block:: java
+
+    /**
+     >* retourne le formulaire pour un nouveau client  
+     * 
+     * @param model
+     * @return la jsp formulaire pour modifier le nouveau client
+     */
+    @GetMapping("/formNewClient")
+    public String createClient(Model model) {
+        model.addAttribute("updateClient", new Client());
+        return ("updateClient");
+    }
+
+
+ .. warning:: pour ne pas perdre le databinding pour les deux methodes j'utilise la denomination  "updateClient" parceque j'utilise la meme metode updateForm qui utilise en parametre ce updateclietn
+
+couche DAO :
+============
+
+hibernate permet d'utiliser la methode SaveOrUpdate avec spring pour persister les clients ! 
+

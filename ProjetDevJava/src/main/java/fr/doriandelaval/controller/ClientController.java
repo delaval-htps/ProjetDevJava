@@ -67,17 +67,61 @@ public class ClientController {
 		return ("selectClient");
 	}
 
-	@GetMapping("/form")
-	public String update(@RequestParam("id") int id, Model model) {
+	/**
+	 * retourne le formulaire d'un client sélectionné dans la liste client avec son
+	 * id récupéré: champ prérempli avec les elements du client selectionné pret
+	 * pour les modifications
+	 * 
+	 * @param id    la methode a besoin de l'id pour récupérer dans la liste e
+	 *              client le client en question
+	 * @param model permet de transmettre les informations à la jsp
+	 * @return la jsp formulaire pour modifier le client
+	 */
+	@GetMapping("/formClientId")
+	public String updateClient(@RequestParam("id") int id, Model model) {
 		model.addAttribute("updateClient", clientService.getClient(id));
 		return ("updateClient");
 	}
 
-	@PostMapping("/update")
-	public String updateForm(@ModelAttribute("updateClient") Client client, @RequestParam("id") int id) {
+	/**
+	 * methode retournant le formulaire pour créer un nouveau client
+	 * 
+	 * @param model pour passer à la jsp un nouveau client
+	 * @return la jsp correspondant au formulaire
+	 */
+	@GetMapping("/formNewClient")
+	public String createClient(Model model) {
+		model.addAttribute("updateClient", new Client());
+		return ("updateClient");
+	}
 
-		//
-		return ("listClient");
+	/**
+	 * retour de validation du formulaire de modification d'un client method post
+	 * 
+	 * @param client : paramétre permettant de d'utiliser les tags form:from de
+	 *               spring et hydrater directement le client ( creation du client
+	 *               implicite )
+	 * 
+	 * @return la jsp de la liste des clients ainsi modifiée ( redirection )
+	 */
+	@PostMapping("/update")
+	public String updateForm(@ModelAttribute("updateClient") Client client) {
+
+		clientService.saveClient(client);
+
+		return ("redirect:/client/list");
+	}
+
+	/**
+	 * supprime le client avec l'id entré en parametre
+	 * 
+	 * @param id
+	 * @return la jsp qui affiche la liste de client (redirection)
+	 */
+	@GetMapping("/delete")
+	public String deleteClient(@RequestParam("id") int id) {
+		clientService.deleteClient(id);
+		return ("redirect:/client/list");
 	}
 
 }

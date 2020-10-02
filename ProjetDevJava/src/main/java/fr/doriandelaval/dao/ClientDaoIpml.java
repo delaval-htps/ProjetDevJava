@@ -41,12 +41,18 @@ public class ClientDaoIpml implements ClientDao {
 		return clients;
 	}
 
+	/**
+	 * enregistre le client donné en paramétre dans la bdd
+	 * 
+	 * @param client le client modifié ou le nouveau client
+	 */
 	@Override
 	public void saveClient(Client client) {
 		Session session = sessionFactory.getCurrentSession();
-
-		if (client != null)
-			session.save(client);
+		System.out.println("**************************************");
+		System.out.println(client.getId());
+		session.saveOrUpdate(client); // permet de soit enregistrer un nouveau client ou de modifier un client
+										// existant
 
 	}
 
@@ -61,6 +67,13 @@ public class ClientDaoIpml implements ClientDao {
 		Session session = sessionFactory.getCurrentSession();
 
 		return (Client) session.get(Client.class, id); // attention nom de class .class avec string ca marche pas
+	}
+
+	@Override
+	public void deleteClient(int id) {
+		Session session = sessionFactory.getCurrentSession();
+
+		session.delete(this.getClient(id));
 	}
 
 }

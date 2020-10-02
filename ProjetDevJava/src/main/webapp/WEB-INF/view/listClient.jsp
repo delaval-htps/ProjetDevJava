@@ -42,8 +42,7 @@
 									<caption>Liste des Clients</caption>
 									<thead class="thead-light">
 										<tr>
-
-
+											<th scope="col"><input type="checkbox" /></th>
 											<th scope="col">Nom</th>
 											<th scope="col">Prénom</th>
 											<th scope="col">Numéro Tel</th>
@@ -56,11 +55,12 @@
 										<c:forEach items="${clients}" var="client">
 
 											<tr data-href="select?id=${client.id}">
-												<td scope="row " class="align-middle"><img class="rounded " 
-													src="${pageContext.request.contextPath}/resources/images/photos/${client.photo}"
-													width="48" height="48" /><span class="font-italic"> ${client.nom}</span></td>
+												<td  class="align-middle"><input type="checkbox" /></td>
 
-												
+												<td scope="row" class="align-middle"><img class="rounded "
+													src="${pageContext.request.contextPath}/resources/images/photos/${client.photo}"
+													width="48" height="48" /><span class="font-weight-bold font-italic">
+														${client.nom}</span></td>
 												<td class="align-middle">${client.prenom}</td>
 												<td class="align-middle">0${client.numeroTel}</td>
 												<td class="align-middle">${client.email}</td>

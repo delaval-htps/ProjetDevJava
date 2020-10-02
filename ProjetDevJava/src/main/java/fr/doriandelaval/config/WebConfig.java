@@ -23,7 +23,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 													// package complet pour ne pas faire d'oubli
 @ImportResource("classpath:resources/spring-data-access-config.xml") // permet d'importer le fichier xml de
 																		// configuration pour hibernate et la datasource
-																		// avec les annotations tx (transactional)
+// avec les annotations tx (transactional)
 public class WebConfig implements WebMvcConfigurer {
 	/**
 	 * création du bean ViewResolser pour connaitre le chemin des vue .jsp
@@ -39,8 +39,9 @@ public class WebConfig implements WebMvcConfigurer {
 	}
 
 	/**
-	 * methode surchargé pour definir le dossiers de ressources externes
-	 * utile pour les jsp avec le $pagecontent.request.contextPath pour avoir le chemin 
+	 * methode surchargé pour definir le dossiers de ressources externes css images
+	 * ... utile pour les jsp avec le $pagecontent.request.contextPath pour avoir le
+	 * chemin
 	 */
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {

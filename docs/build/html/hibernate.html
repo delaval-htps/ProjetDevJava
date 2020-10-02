@@ -19,6 +19,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
+    <link rel="prev" title="Utilisation de Spring" href="SpringConfig.html" />
     <link rel="shortcut icon" type="image/png" href="_static/py.png" />
     
     <script type="text/javascript" src="_static/copybutton.js"></script>
@@ -32,6 +33,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="Index général"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="SpringConfig.html" title="Utilisation de Spring"
+             accesskey="P">précédent</a> |</li>
     <li><img src="_static/py.png" alt=""
              style="vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://www.python.org/">Python</a> &#187;</li>
@@ -69,6 +73,84 @@
 <p>So you have to write:</p>
 <p>List&lt;GifModel&gt; textList = session.createQuery(«&nbsp;from GifModel&nbsp;»).list();</p>
 <p>Can not set char field fr.doriandelaval.entity.Client.etatCustomer to null value</p>
+<div class="section" id="databinding-hibernate-spring">
+<h2>databinding hibernate Spring<a class="headerlink" href="#databinding-hibernate-spring" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="databinding">
+<h3>databinding<a class="headerlink" href="#databinding" title="Lien permanent vers ce titre">¶</a></h3>
+<p>databinding avec spring avec <strong>&#64;ModelAttribut(«&nbsp;String de désignation&nbsp;», class instance)</strong>  en parametre pour directement recupérer dans une jsp un client a updater ou un nouveau client.</p>
+<blockquote>
+<div><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@PostMapping</span><span class="p">(</span><span class="s">&quot;/update&quot;</span><span class="p">)</span>
+<span class="kd">public</span> <span class="n">String</span> <span class="nf">updateForm</span><span class="p">(</span><span class="nd">@ModelAttribute</span><span class="p">(</span><span class="s">&quot;updateClient&quot;</span><span class="p">)</span> <span class="n">Client</span> <span class="n">client</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">clientService</span><span class="p">.</span><span class="na">saveClient</span><span class="p">(</span><span class="n">client</span><span class="p">);</span>
+    <span class="k">return</span> <span class="p">(</span><span class="s">&quot;redirect:/client/list&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Ne pas oublier d’utiliser les tags &lt;form:form&gt; de spring avec modelAttribut pour faire le binding !</p>
+</div>
+</div></blockquote>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>&lt;%@ taglib prefix=&quot;form&quot; uri=&quot;http://www.springframework.org/tags/form&quot; %&gt;
+&lt;form:form action=&quot;processForm&quot; modelAttribute=&quot;utilisateur&quot; &gt;
+    Prénom: &lt;form:input path=&quot;prenom&quot; /&gt;
+    &lt;br&gt;&lt;br&gt;
+    Nom: &lt;form:input path=&quot;nom&quot; /&gt;
+    &lt;br&gt;&lt;br&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;valider&quot;/&gt;
+&lt;/form:form&gt;
+</pre></div>
+</div>
+<p>il faut donc pour persister des modification ou un nouveeu client :
+* une methode qui renvoie le formulaire pour updater un client : elle a besoin de d’un parametre qui est l’id du client a modifier</p>
+<blockquote>
+<div><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> &gt;* retourne le formulaire d&#39;un client sélectionné dans la liste client avec son</span>
+<span class="cm"> * id récupéré: champ prérempli avec les elements du client selectionné</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param id</span>
+<span class="cm"> * @param model</span>
+<span class="cm"> * @return la jsp formulaire pour modifier le client</span>
+<span class="cm"> */</span>
+<span class="nd">@GetMapping</span><span class="p">(</span><span class="s">&quot;/formClientId&quot;</span><span class="p">)</span>
+<span class="kd">public</span> <span class="n">String</span> <span class="nf">updateClient</span><span class="p">(</span><span class="nd">@RequestParam</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">)</span> <span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="n">Model</span> <span class="n">model</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">model</span><span class="p">.</span><span class="na">addAttribute</span><span class="p">(</span><span class="s">&quot;updateClient&quot;</span><span class="p">,</span> <span class="n">clientService</span><span class="p">.</span><span class="na">getClient</span><span class="p">(</span><span class="n">id</span><span class="p">));</span>
+    <span class="k">return</span> <span class="p">(</span><span class="s">&quot;updateClient&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ul>
+<li><p class="first">une methode qui renvoie également le formulaire mais qui va créer un nouveau client avant pour le transmettre a la jsp:</p>
+<blockquote>
+<div><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> &gt;* retourne le formulaire pour un nouveau client</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param model</span>
+<span class="cm"> * @return la jsp formulaire pour modifier le nouveau client</span>
+<span class="cm"> */</span>
+<span class="nd">@GetMapping</span><span class="p">(</span><span class="s">&quot;/formNewClient&quot;</span><span class="p">)</span>
+<span class="kd">public</span> <span class="n">String</span> <span class="nf">createClient</span><span class="p">(</span><span class="n">Model</span> <span class="n">model</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">model</span><span class="p">.</span><span class="na">addAttribute</span><span class="p">(</span><span class="s">&quot;updateClient&quot;</span><span class="p">,</span> <span class="k">new</span> <span class="n">Client</span><span class="p">());</span>
+    <span class="k">return</span> <span class="p">(</span><span class="s">&quot;updateClient&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<blockquote>
+<div><div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">pour ne pas perdre le databinding pour les deux methodes j’utilise la denomination  «&nbsp;updateClient&nbsp;» parceque j’utilise la meme metode updateForm qui utilise en parametre ce updateclietn</p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="couche-dao">
+<h3>couche DAO :<a class="headerlink" href="#couche-dao" title="Lien permanent vers ce titre">¶</a></h3>
+<p>hibernate permet d’utiliser la methode SaveOrUpdate avec spring pour persister les clients !</p>
+</div>
+</div>
 </div>
 
 
@@ -78,13 +160,20 @@
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <h3><a href="index.html">Table of Contents</a></h3>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="presentation.html">Description des besoins de l’Application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SQL.html">Creation de la base de données</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mavenDependence.html">Maven et ses dépendances</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SpringConfig.html">Utilisation de Spring</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">hibernate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#databinding-hibernate-spring">databinding hibernate Spring</a></li>
+</ul>
+</li>
 </ul>
 
+  <h4>Sujet précédent</h4>
+  <p class="topless"><a href="SpringConfig.html"
+                        title="Chapitre précédent">Utilisation de Spring</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Recherche rapide</h3>
     <div class="searchformwrapper">
@@ -107,6 +196,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="Index général"
              >index</a></li>
+        <li class="right" >
+          <a href="SpringConfig.html" title="Utilisation de Spring"
+             >précédent</a> |</li>
     <li><img src="_static/py.png" alt=""
              style="vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://www.python.org/">Python</a> &#187;</li>

@@ -1,5 +1,6 @@
 package fr.doriandelaval.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -8,6 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * class Entité Client: représente la classe Client en bdd SQL avec toutes les
@@ -19,7 +24,12 @@ import javax.persistence.Table;
 @Entity // permet de faire le lien avec la table client dans la bdd
 @Table(name = "customer")
 
-public class Client {
+public class Client implements Serializable {
+
+	/**
+		 * 
+		 */
+	private static final long serialVersionUID = 1L;
 
 //attributs
 
@@ -54,19 +64,23 @@ public class Client {
 
 	@Column
 	private String email;
+
 	/*
 	 * catégorie du contact soit un client 'C' soit un Prospect 'P' soit un
 	 * fournisseur 'F'
 	 */
-
 	@Column
 	private Character etatCustomer; // utilisation de Character et non char car primitive ne peuvent pas etre nul
+
 	/*
 	 * date de première prise de contact avec le client
 	 */
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd") // pour le databinding avec @ModelAttribute
+	@Temporal(TemporalType.DATE) // pour persister avec javax
 	@Column
 	private Date dateContact;
+
 	/*
 	 * commentaire perso au sujet du client
 	 */

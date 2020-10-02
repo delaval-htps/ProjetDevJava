@@ -59,8 +59,7 @@ public class ClientServiceImpl implements ClientService {
 	@Override
 	@Transactional
 	public void deleteClient(int id) {
-		// TODO Auto-generated method stub
-
+		clientDao.deleteClient(id);
 	}
 
 }
