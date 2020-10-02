@@ -191,6 +191,3 @@ div.footer a:hover {
 dl > dt span ~ em {
     font-family: monospace, sans-serif;
 }
-.bodywrapper .body {
-	max-width: none;
-}

@@ -95,8 +95,9 @@
 			<artifactId>c3p0</artifactId>
 			<version>0.9.1.2</version>
 		</dependency>
-		
-		<!--  pour valider l'annotation @AnnotationDrivenConfig et faire une config class webmvc + xml pour hibernate -->
+
+		<!-- pour valider l'annotation @AnnotationDrivenConfig et faire une config 
+			class webmvc + xml pour hibernate -->
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
@@ -138,6 +139,18 @@
 			<artifactId>jackson-core</artifactId>
 			<version>2.11.2</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.11.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.11.2</version>
+		</dependency>
 
 		<!-- autres dependances -->
 
@@ -174,6 +187,7 @@
 	</dependencies>
 
 	<build>
+
 		<finalName>ProjetDevJava</finalName>
 		<pluginManagement><!-- lock down plugins versions to avoid using Maven 
 				defaults (may be moved to parent pom) -->

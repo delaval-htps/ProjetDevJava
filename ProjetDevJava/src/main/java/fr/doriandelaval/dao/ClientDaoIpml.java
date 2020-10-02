@@ -41,4 +41,26 @@ public class ClientDaoIpml implements ClientDao {
 		return clients;
 	}
 
+	@Override
+	public void saveClient(Client client) {
+		Session session = sessionFactory.getCurrentSession();
+
+		if (client != null)
+			session.save(client);
+
+	}
+
+	/**
+	 * retourne le client avec l'id qui est passé en parametre
+	 * 
+	 * @param id du client a récupérer
+	 * @return le client avec l'id entré en param
+	 */
+	@Override
+	public Client getClient(int id) {
+		Session session = sessionFactory.getCurrentSession();
+
+		return (Client) session.get(Client.class, id); // attention nom de class .class avec string ca marche pas
+	}
+
 }

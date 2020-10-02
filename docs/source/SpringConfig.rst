@@ -25,14 +25,12 @@ Le but étant d'utiliser Spring pour créer une architecture n-tiers et permettr
 .. image:: _static/projet3tiers.png
    :align: center
 
-Version: Config Class
-*********************
+Configuration Xml
+*****************
 
-C'est un choix voulu, car il me permet d'utiliser toute la puissance de Spring sans avoir de fichier xml (on evite les fautes de frappes, les oublies et cela parait plus clair a la lecture...)
+A la base nous avons donc les fichiers xml suivants pour configurer correctement Spring :
 
-A la base nous aurions donc du avoir les fichiers suivants pour pouvoir configurer correctement Spring :
-
- * un fichier **Spring-mvc-config-servlet**
+ * un fichier **Spring-mvc-config-servlet** pour la configuration du context de spring et ses beans
 
    .. code-block:: xml
    
@@ -113,7 +111,7 @@ A la base nous aurions donc du avoir les fichiers suivants pour pouvoir configur
     </beans>
             
     
- *  et un fichier **web.xml** pour 
+ *  et un fichier **web.xml** pour indiquer la page de démmarrage de l'application et définir le Front Controller (DispatcherServlet avec son url d'écoute) et le chemin du fichier de configuration de spring exposé ci dessus)
 
   .. code-block:: xml
 
@@ -143,5 +141,10 @@ A la base nous aurions donc du avoir les fichiers suivants pour pouvoir configur
 
     </web-app>
 
-Pour ma part je préfére utiliser la config class caar elle me permet déjà de voir tout de suite dans les sources mes fichiers config de Spring.
-Et je trouve plus élégant de travailler ainsi. Cependant les annotations utilisés dans ces fichers de conf cachent tout le paramétrage complexe de Spring.
+Pour ma part je préfére utiliser la config class car elle me permet déjà de voir tout de suite dans les sources mes fichiers config de Spring.
+Et je trouve plus élégant de travailler ainsi. Cependant les annotations utilisés dans ces fichers de conf cachent le paramétrage complexe de Spring...
+
+Configuration Config class:
+***************************
+
+Nous partons donc de cette base de configuration en xml pour la transformer en class config 

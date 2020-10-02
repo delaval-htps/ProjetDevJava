@@ -32,6 +32,9 @@ public class Client {
 	private String nomSociete;
 
 	@Column
+	private String photo;
+
+	@Column
 	private String nom;
 
 	@Column
@@ -41,7 +44,7 @@ public class Client {
 	private String adresse;
 
 	@Column
-	private Integer codePostal;
+	private Integer codePostal; // de type Integer pour pouvoir récupérer un null ou un vide
 
 	@Column
 	private String ville;
@@ -77,13 +80,12 @@ public class Client {
 
 	}
 
-	
-
-	public Client(int id, String nomSociete, String nom, String prenom, String adresse, int codePostal, String ville,
-			int numeroTel, String email, char etatCustomer, Date dateContact, String commentaire) {
+	public Client(int id, String nomSociete, String photo, String nom, String prenom, String adresse, int codePostal,
+			String ville, int numeroTel, String email, char etatCustomer, Date dateContact, String commentaire) {
 		super();
 		this.id = id;
 		this.nomSociete = nomSociete;
+		this.photo = photo;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresse = adresse;
@@ -96,7 +98,7 @@ public class Client {
 		this.commentaire = commentaire;
 	}
 	// getter & setters
-	
+
 	/**
 	 * retourne l'id du client
 	 * 
@@ -131,6 +133,14 @@ public class Client {
 	 */
 	public void setNomSociete(String nomSociete) {
 		this.nomSociete = nomSociete;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 	/**
@@ -192,17 +202,19 @@ public class Client {
 	 * 
 	 * @return code postal
 	 */
-	public int getCodePostal() {
+	public Integer getCodePostal() {
 		return codePostal;
 	}
 
 	/**
-	 * change le code postal du client par celui donné en parametre
+	 * change le code postal du client par celui donné en parametre attention la bdd
+	 * renvoie un int et on le recupére et on le wrappe en Integer pour verifier
+	 * s'il est null
 	 * 
 	 * @param codePostal
 	 */
 	public void setCodePostal(int codePostal) {
-		this.codePostal = codePostal;
+		this.codePostal = Integer.valueOf(codePostal);
 	}
 
 	/**
@@ -265,17 +277,19 @@ public class Client {
 	 * 
 	 * @return status du client
 	 */
-	public char getEtatCustomer() {
+	public Character getEtatCustomer() {
 		return etatCustomer;
 	}
 
 	/**
 	 * change le status du client le client avec le parametre soit : 'C' pour le
 	 * status client 'P' pour le status prospect 'F' pour le status fournisseur
+	 * attention: on recupére le char etacustomer et on le wrappe avec character
+	 * 
 	 */
 
 	public void setEtatCustomer(char etatCustomer) {
-		this.etatCustomer = etatCustomer;
+		this.etatCustomer = Character.valueOf(etatCustomer);
 	}
 
 	/**
@@ -314,8 +328,6 @@ public class Client {
 		this.commentaire = commentaire;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", nomSociete=" + nomSociete + ", nom=" + nom + ", prenom=" + prenom + ", adresse="
@@ -323,7 +335,5 @@ public class Client {
 				+ email + ", etatCustomer=" + etatCustomer + ", dateContact=" + dateContact + ", commentaire="
 				+ commentaire + "]";
 	}
-	
-	
 
 }

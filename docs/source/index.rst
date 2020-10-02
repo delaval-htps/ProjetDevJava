@@ -19,8 +19,8 @@ Cette application permettra d'enregistrer et optimiser les intéractions entre l
    presentation
    SQL
    mavenDependence
-   SpringConfigClass
-
+   SpringConfig
+   hibernate.rst
 
 
 Indices and tables
