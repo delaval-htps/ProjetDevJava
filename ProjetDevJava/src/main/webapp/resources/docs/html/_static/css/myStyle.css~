@@ -1,0 +1,5 @@
+@import  url("python_docs_theme.css");
+
+h1{
+	color: red;
+}

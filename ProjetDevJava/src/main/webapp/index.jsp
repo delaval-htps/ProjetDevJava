@@ -9,7 +9,7 @@
 <link
 			rel="stylesheet"
 			type="text/css"
-			href="${pageContext.request.contextPath}/resources/css/myCss.css"
+			href="${pageContext.request.contextPath}/resources/css/mycss.css"
 >
 <link
 			rel="stylesheet"
@@ -31,12 +31,14 @@
 												class="col  "
 									>
 												<div class="row">
+
 															<div class="col-12 p-0">
 																		<%@include file="/WEB-INF/view/nav.jsp"%>
 															</div>
+
 															<div class="col-12">
-																		<div class="row">
-																					<div class="col-sm-4 offset-4">
+																		<div class="row justify-content-around">
+																					<div class="col-sm-3">
 																								<div
 																											class="card shadow p-3 mb-5 bg-white rounded"
 																								>
@@ -46,7 +48,7 @@
 
 																														<a
 																																	href="${pageContext.request.contextPath }/client/list"
-																																	class="btn btn-primary"
+																																	class="btn btn-outline-primary"
 																														> <img
 																																	src="${pageContext.request.contextPath }/resources/images/icones/people.svg"
 																																	width="32"
@@ -60,7 +62,7 @@
 															<div class="col-12">
 																		<div class="row justify-content-around ">
 
-																					<div class="col-sm-4  ">
+																					<div class="col-sm-3  ">
 																								<div
 																											class="card shadow p-3 mb-5 bg-white rounded"
 																								>
@@ -70,7 +72,7 @@
 
 																														<a
 																																	href="${pageContext.request.contextPath }/devis/list"
-																																	class="btn btn-primary"
+																																	class="btn btn-outline-primary"
 																														><img
 																																	src="${pageContext.request.contextPath }/resources/images/icones/pencil-square.svg"
 																																	width="32"
@@ -79,7 +81,7 @@
 																											</div>
 																								</div>
 																					</div>
-																					<div class="col-sm-4 ">
+																					<div class="col-sm-3 ">
 																								<div
 																											class="card shadow p-3 mb-5 bg-white rounded"
 																								>
@@ -89,7 +91,7 @@
 
 																														<a
 																																	href="${pageContext.request.contextPath }/facture/list#"
-																																	class="btn btn-primary"
+																																	class="btn btn-outline-primary"
 																														><img
 																																	src="${pageContext.request.contextPath }/resources/images/icones/invoice.svg"
 																																	width="32"
@@ -101,8 +103,8 @@
 																		</div>
 															</div>
 															<div class="col-12">
-																		<div class="row">
-																					<div class="col-sm-4 offset-4">
+																		<div class="row justify-content-around">
+																					<div class="col-sm-3 ">
 																								<div
 																											class="card shadow p-3 mb-5 bg-white rounded"
 																								>
@@ -112,7 +114,7 @@
 
 																														<a
 																																	href="${pageContext.request.contextPath }/articles"
-																																	class="btn btn-primary"
+																																	class="btn btn-outline-primary"
 																														><img
 																																	src="${pageContext.request.contextPath }/resources/images/icones/box.svg"
 																																	width="32"

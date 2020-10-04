@@ -1,0 +1,31 @@
+.. test sphinx documentation master file, created by
+   sphinx-quickstart on Sun Sep 20 14:21:05 2020.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+*******************************************************************
+Développement fullstack d'une application web avec Spring & Angular
+*******************************************************************
+
+Presentation du projet
+**********************
+
+Le but de ce projet est de creer une application web de type CRM (Customer RelationShip Management) pour les PME.
+Cette application permettra d'enregistrer et optimiser les intéractions entre la dite PME et ses clients/prospects
+
+.. toctree::
+   :maxdepth: 2
+
+   presentation
+   SQL
+   mavenDependence
+   SpringConfig
+   hibernate.rst
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

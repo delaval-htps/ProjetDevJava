@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+/***** SidebarMenu *******/
+#sidebarMenu {
+	max-width: 115px;
+	background: rgb(120, 176, 235);
+	background: radial-gradient(circle, rgba(120, 176, 235, 1) 0%,
+		rgba(255, 255, 255, 1) 100%);
+}
+
+#sidebarMenu .nav-link {
+	color: black;
+}
+
+#sidebarMenu .nav-link:hover {
+	color: blue;
+	font-size: 1.05em;
+}
+
+/************ liste de clients *****************/
+.listClientHeader, thead {
+	background: rgb(231, 241, 251);
+	background: linear-gradient(90deg, rgba(231, 241, 251, 1) 49%,
+		rgba(255, 255, 255, 1) 100%);
+}
+
+.card-header {
+	background: rgb(231, 241, 251);
+	background: linear-gradient(90deg, rgba(231, 241, 251, 1) 49%,
+		rgba(255, 255, 255, 1) 100%);
+}
+
+#tdImgList {
+	text-transform: uppercase;
+	font-weight: bold;
+	background-image: url("../images/icones/cercle.png");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+
+/*************** page accueil *************** /
+#cardFunction {
+	max-width: max-content;
+}

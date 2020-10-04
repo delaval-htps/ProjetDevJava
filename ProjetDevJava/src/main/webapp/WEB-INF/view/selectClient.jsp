@@ -11,17 +11,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Liste des Clients</title>
+<title>Client Selectionné</title>
 <meta
 			name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no"
 >
 <link
 			rel="stylesheet"
+			type="text/css"
+			href="${pageContext.request.contextPath}/resources/css/mycss.css"
+>
+
+<link
+			rel="stylesheet"
 			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 			integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 			crossorigin="anonymous"
 >
+
 </head>
 <body>
 			<div class="container-fluid">
@@ -40,27 +47,26 @@
 															</div>
 
 															<div class="col-12 p-3 ">
-																		<div
-																					class="card mb-3 shadow p-3 mb-5 bg-white rounded"
-																		>
+																		<div class="card mb-3 shadow p-3 mb-5 rounded">
+																				<div class="card-header rounded shadow-sm text-center">
+																														<h1 class="card-title display-5">${selectClient.prenom }
+																																	${selectClient.nom}</h1>
+																											</div>
 																					<div class="row no-gutters">
-																								<div
-																											class="col-md-3"
-																											style="margin: auto;"
-																								>
+																								<div class="col-md-3 m-auto text-center">
 																											<img
+																														class="rounded-circle"
+																														width="200"
+																														height="200"
 																														src="${pageContext.request.contextPath }/resources/images/photos/${selectClient.photo}"
-																														class=" rounded mx-auto d-block"
 																														alt="photo non renseignée..."
 																											>
 																								</div>
-																								<div class="col-md-7 ">
+																								<div class="col-md-7">
+																									
 																											<div class="card-body">
-																														<h1 class="card-title display-4">${selectClient.prenom }
-																																	${selectClient.nom}</h1>
-
 																														<table
-																																	class="table-borderless table-striped table-sm "
+																																	class="table-borderless  table-sm mx-auto "
 																														>
 																																	<tr>
 
@@ -126,24 +132,20 @@
 																																	</tr>
 																														</table>
 
-																														<p class="card-text">
-																																	<small class="text-muted">Last
-																																				updated 3 mins ago</small>
-																														</p>
 																											</div>
 																								</div>
 																								<div class="col-md-2 text-center m-auto">
 
 																											<p>
 																														<a
-																																	class="btn btn-success btn-sm btn-block"
+																																	class="btn btn-outline-success btn-sm btn-block"
 																																	href="formClientId?id=${selectClient.id }"
 																																	role="button"
 																														>Modifier</a>
 																											</p>
 																											<p>
 																														<a
-																																	class="btn btn-danger btn-sm btn-block"
+																																	class="btn btn-outline-danger btn-sm btn-block"
 																																	href="delete?id=${selectClient.id }"
 																																	role="button"
 																														>Supprimer</a>

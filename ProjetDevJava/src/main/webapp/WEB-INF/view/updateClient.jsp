@@ -12,11 +12,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Liste des Clients</title>
+<title>Modification Client</title>
 <meta
 			name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no"
 >
+<link
+			rel="stylesheet"
+			type="text/css"
+			href="${pageContext.request.contextPath}/resources/css/mycss.css"
+>
+
 <link
 			rel="stylesheet"
 			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -51,13 +57,7 @@
 
 																								<div class="card-header text-secondary">
 
-																											<!--  formulaire pour la photo -->
-																											<%-- 									<form class="form-inline my-2 my-lg-0"> --%>
-																											<!-- 										<div class="form-group col-md-3"> -->
-																											<%-- 											<form:label path="photo">photo</form:label> --%>
-																											<%-- 											<form:input class="form-control text-secondary" path="photo" /> --%>
-																											<!-- 										</div> -->
-																											<%-- 									</form> --%>
+
 
 																											<h1 class="display-5">[${updateClient.nom}
 																														${updateClient.prenom}]</h1>
@@ -87,7 +87,14 @@
 																																	<div
 																																				class="form-row justify-content-around"
 																																	>
-
+																																				<!--  formulaire pour la photo -->
+																																				<div class="form-group col-md-3">
+																																							<form:label path="photo">photo</form:label>
+																																							<form:input
+																																										class="form-control text-secondary"
+																																										path="photo"
+																																							/>
+																																				</div>
 																																				<div class="form-group col-md-3">
 
 																																							<form:label path="nom">Nom</form:label>
@@ -144,7 +151,7 @@
 																																							<form:label path="dateContact">Date de prise de contact</form:label>
 																																							<form:input
 																																										type="date"
-																																										value="23/08/1976"
+																																										value="${updateClient.dateContact }"
 																																										class="form-control text-secondary"
 																																										path="dateContact"
 																																							/>
