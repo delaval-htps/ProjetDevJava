@@ -1,11 +1,7 @@
 ToDolist
 ********
 
-* Créer un bouton pour créer un nouveau client dans la list des clients
-
 * bouton de plusieurs pages pour la liste de clients
-
-* select avec le type de client: prospects /fournisseurs/ Client
 
 * rest api voir foncntionnement
 

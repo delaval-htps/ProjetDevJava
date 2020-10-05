@@ -11,7 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -27,8 +32,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Client implements Serializable {
 
 	/**
-		 * 
-		 */
+	* 
+	*/
 	private static final long serialVersionUID = 1L;
 
 //attributs
@@ -44,23 +49,32 @@ public class Client implements Serializable {
 	@Column
 	private String photo;
 
+	@NotNull(message = "champ obligatoire")
+	@Size(min = 1, message = "Nom Obligatoire")
 	@Column
 	private String nom;
 
+	@NotNull(message = "champ obligatoire")
+	@Size(min = 1, message = "Nom Obligatoire")
 	@Column
 	private String prenom;
 
 	@Column
 	private String adresse;
 
+	@Digits(fraction = 0, integer = 5, message = "le code postal doit comporter 5 chiffres")
+	@Length(min = 5, message = "le code postal doit comporter 5 chiffres")
 	@Column
-	private Integer codePostal; // de type Integer pour pouvoir récupérer un null ou un vide
+	private String codePostal; // de type Integer pour pouvoir récupérer un null ou un vide
 
 	@Column
 	private String ville;
 
+	@NotNull(message = "champ obligatoire")
+	@Digits(fraction = 0, integer = 9, message = "le numéro de tel doit être composé de 9 chiffres hors indicatif")
+	@Length(min = 9, message = "pas assez de chiffres")
 	@Column
-	private int numeroTel;
+	private String numeroTel;
 
 	@Column
 	private String email;
@@ -76,6 +90,8 @@ public class Client implements Serializable {
 	 * date de première prise de contact avec le client
 	 */
 
+	@NotNull(message = "champ obligatoire")
+	@Past(message = "la date doit etre antérieure a celle d'aujourd'hui")
 	@DateTimeFormat(pattern = "yyyy-MM-dd") // pour le databinding avec @ModelAttribute
 	@Temporal(TemporalType.DATE) // pour persister avec javax
 	@Column
@@ -94,8 +110,9 @@ public class Client implements Serializable {
 
 	}
 
-	public Client(int id, String nomSociete, String photo, String nom, String prenom, String adresse, int codePostal,
-			String ville, int numeroTel, String email, char etatCustomer, Date dateContact, String commentaire) {
+	public Client(int id, String nomSociete, String photo, @NotNull String nom, @NotNull String prenom, String adresse,
+			String codePostal, String ville, @NotNull String numeroTel, String email, Character etatCustomer,
+			@NotNull Date dateContact, String commentaire) {
 		super();
 		this.id = id;
 		this.nomSociete = nomSociete;
@@ -216,19 +233,17 @@ public class Client implements Serializable {
 	 * 
 	 * @return code postal
 	 */
-	public Integer getCodePostal() {
+	public String getCodePostal() {
 		return codePostal;
 	}
 
 	/**
-	 * change le code postal du client par celui donné en parametre attention la bdd
-	 * renvoie un int et on le recupére et on le wrappe en Integer pour verifier
-	 * s'il est null
+	 * change le code postal du client par celui donné en parametre
 	 * 
 	 * @param codePostal
 	 */
-	public void setCodePostal(int codePostal) {
-		this.codePostal = Integer.valueOf(codePostal);
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
 	}
 
 	/**
@@ -254,7 +269,7 @@ public class Client implements Serializable {
 	 * 
 	 * @return numero de téléphone
 	 */
-	public int getNumeroTel() {
+	public String getNumeroTel() {
 		return numeroTel;
 	}
 
@@ -263,7 +278,7 @@ public class Client implements Serializable {
 	 * 
 	 * @param numeroTel
 	 */
-	public void setNumeroTel(int numeroTel) {
+	public void setNumeroTel(String numeroTel) {
 		this.numeroTel = numeroTel;
 	}
 

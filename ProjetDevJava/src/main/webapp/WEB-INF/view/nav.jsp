@@ -1,6 +1,6 @@
 
 <nav
-			class=" navbar navbar-expand-lg  border-bottom mb-3 "
+			class=" navbar navbar-expand-lg  border-bottom mb-2 "
 >
 
 

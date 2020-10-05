@@ -33,6 +33,12 @@
 			crossorigin="anonymous"
 >
 </head>
+<style>
+.error {
+	color: #ff0000;
+}
+</style>
+
 <body>
 			<div class="container-fluid">
 
@@ -56,15 +62,13 @@
 
 																		<div class="row">
 
-																					<div class="card m-3 shadow bg-white rounded">
+																					<div class="card m-2 shadow bg-white rounded">
 
 																								<div class="card-header text-secondary">
 
 																											<div class="row">
 
-																														<c:if
-																																	test="${not empty updateClient.photo }"
-																														>
+																														<c:if test="${not empty updateClient.photo }">
 																																	<img
 																																				class="rounded-circle "
 																																				height="58"
@@ -81,11 +85,11 @@
 																																	<c:if test="${updateClient.id == 0 }">[Création d'un nouveau client]</c:if>
 																														</h1>
 
-																														<span
-																																	class="align-self-center ml-auto text-danger"
-																														>Veuillez modifier/remplir les champs</span>
 
 																											</div>
+																											<span class="align-self-center ">Veuillez
+																														modifier/remplir les champs</span>
+
 																								</div>
 
 																								<div class="card-body text-primary">
@@ -98,7 +102,8 @@
 																														modelAttribute="updateClient"
 																											>
 
-																														<!-- permet de donner l'id du client en databinding avec modelAttribut sans ca l'id est automatiquement mis a zero -->
+																														<!-- permet de donner l'id du client en databinding avec modelAttribut
+										 sans ca l'id est automatiquement mis a zero -->
 																														<form:input
 																																	type="hidden"
 																																	path="id"
@@ -108,104 +113,173 @@
 																																	class="form-row border shadow p-3 mb-3 bg-white rounded"
 																														>
 
-																																	<div
-																																				class="form-row justify-content-around"
-																																	>
-																																				<!--  formulaire pour la photo -->
-																																				<div class="form-group col-md-3">
-																																							<form:label path="photo">photo</form:label>
-																																							<form:input
-																																										class="form-control text-secondary"
-																																										path="photo"
-																																							/>
-																																				</div>
-																																				<div class="form-group col-md-3">
+																																	<div class="form-row ">
 
-																																							<form:label path="nom">Nom</form:label>
+																																				<div class="row col-12 justify-content-between">
 
-																																							<form:input
-																																										class="form-control text-secondary"
-																																										path="nom"
-																																							/>
-																																				</div>
-																																				<div class="form-group col-md-3 ">
-																																							<form:label path="prenom">Prénom</form:label>
-																																							<form:input
-																																										class="form-control text-secondary"
-																																										path="prenom"
-																																							/>
-																																				</div>
-																																				<div class="form-group col-md-3  ">
-																																							<form:label path="nomSociete">Société</form:label>
-																																							<form:input
-																																										class="form-control text-secondary"
-																																										path="nomSociete"
-																																							/>
-																																				</div>
-																																				<div class="form-group col-md-2 ">
-																																							<form:label path="etatCustomer">Type de Contact</form:label>
-																																		
-																																							<form:select path="etatCustomer">
-																																										<form:option
-																																													value="C"
-																																													label="Client"
-																																										/>
-																																										<form:option
-																																													value="P"
-																																													label="Prospect"
-																																										/>
-																																										<form:option
-																																													value="F"
-																																													label="Fournisseur"
-																																										/>
-																																							</form:select>
-																																				</div>
+																																							<!-- formulaire pour le nom -->
+																																							<div class="form-group col-md-3">
 
-																																				<div class="form-group col-md-3">
-																																							<form:label path="numeroTel">Numero de téléphone</form:label>
-																																							<div class="input-group-prepend">
-																																										<span
-																																													class="input-group-text"
-																																													id="addon-wrapping"
-																																										>+33/0</span>
+																																										<form:label path="nom">Nom<sup>(*)</sup>
+																																										</form:label>
 
 																																										<form:input
 																																													class="form-control text-secondary"
-																																													path="numeroTel"
+																																													path="nom"
+																																										/>
+
+																																										<!-- gestion des validations : messages d'erreurs -->
+
+																																										<form:errors
+																																													path="nom"
+																																													cssClass="error"
 																																										/>
 																																							</div>
+
+																																							<!-- formulaire pour le prenom -->
+																																							<div class="form-group col-md-3 ">
+
+																																										<form:label path="prenom">Prénom <sup>(*)</sup>
+																																										</form:label>
+
+																																										<form:input
+																																													class="form-control text-secondary"
+																																													path="prenom"
+																																										/>
+
+																																										<!-- gestion des validations : messages d'erreurs -->
+																																										<form:errors
+																																													path="prenom"
+																																													cssClass="error"
+																																										/>
+																																							</div>
+																																							<!-- formulaire pour le nom de la societe -->
+
+																																							<div class="form-group col-md-3  ">
+																																										<form:label path="nomSociete">Société</form:label>
+																																										<form:input
+																																													class="form-control text-secondary"
+																																													path="nomSociete"
+																																										/>
+																																							</div>
+																																							<!-- formulaire pour le  status du client-->
+
+																																							<div class="form-group col-md-2 ">
+																																										<form:label path="etatCustomer">Type de Contact</form:label>
+
+																																										<form:select path="etatCustomer">
+																																													<form:option
+																																																value="C"
+																																																label="Client"
+																																													/>
+																																													<form:option
+																																																value="P"
+																																																label="Prospect"
+																																													/>
+																																													<form:option
+																																																value="F"
+																																																label="Fournisseur"
+																																													/>
+																																										</form:select>
+																																							</div>
 																																				</div>
-																																				<div class="form-group col-md-3 ">
-																																							<form:label path="email">Adresse mail</form:label>
-																																							<form:input
-																																										class="form-control text-secondary"
-																																										path="email"
-																																							/>
-																																				</div>
-																																				<div class="form-group col-md-3 ">
-																																							<form:label path="dateContact">Date de prise de contact</form:label>
-																																							<form:input
-																																										type="date"
-																																										value="${updateClient.dateContact }"
-																																										class="form-control text-secondary"
-																																										path="dateContact"
-																																							/>
+
+																																				<div class="row col-12 justify-content-between">
+
+																																							<!-- formulaire pour le numero de telephone -->
+
+																																							<div class="form-group col-md-3">
+																																										<form:label path="numeroTel">Numero de téléphone<sup>
+																																																(*)</sup>
+																																										</form:label>
+
+																																										<div class="input-group-prepend">
+																																													<span
+																																																class="input-group-text"
+																																																id="addon-wrapping"
+																																													>+33/0</span>
+
+
+																																													<form:input
+																																																class="form-control text-secondary"
+																																																path="numeroTel"
+																																													/>
+
+
+																																													<!-- gestion des validations : messages d'erreurs -->
+																																										</div>
+																																										<form:errors
+																																													path="numeroTel"
+																																													cssClass="error"
+																																										/>
+																																							</div>
+
+																																							<!-- formulaire pour le numero de adresse mail-->
+
+																																							<div class="form-group col-md-3 ">
+																																										<form:label path="email">Adresse mail</form:label>
+																																										<form:input
+																																													class="form-control text-secondary"
+																																													path="email"
+																																										/>
+																																							</div>
+
+																																							<!-- formulaire pour la date de prise de contact -->
+																																							<div class="form-group col-md-3 ">
+
+																																										<form:label path="dateContact">Date de prise de contact<sup>
+																																																(*)</sup>
+																																										</form:label>
+
+																																										<form:input
+																																													type="date"
+																																													value="${updateClient.dateContact }"
+																																													class="form-control text-secondary"
+																																													path="dateContact"
+																																										/>
+
+																																										<!-- gestion des validations : messages d'erreurs -->
+																																										<form:errors
+																																													path="dateContact"
+																																													cssClass="error"
+																																										/>
+																																							</div>
+
+																																							<!--  formulaire pour la photo -->
+																																							<div class="form-group col-md-2">
+																																										<form:label path="photo">photo</form:label>
+																																										<form:input
+																																													class="form-control text-secondary"
+																																													path="photo"
+																																										/>
+																																							</div>
+
 																																				</div>
 
 																																	</div>
+
+																																	<span
+																																				class="font-italic  "
+																																				style="font-size: 0.8em;"
+																																	>les champs avec <sup>(*)</sup> sont
+																																				obligatoires!
+																																	</span>
 																														</div>
+
 																														<div
 																																	class="form-row border shadow p-3 mb-3 bg-white rounded"
 																														>
+																																	<!-- formulaire pour l'adresse du client -->
 																																	<div class="form-group col-md-12">
 																																				<form:label path="adresse">Adresse</form:label>
 																																				<form:input
 																																							type="text"
 																																							class="form-control text-secondary"
 																																							path="adresse"
-																																							placeholder="1234 Main St"
 																																				/>
 																																	</div>
+
+																																	<!-- formulaire pour la ville du client -->
 																																	<div class="form-group col-md-4">
 																																				<form:label path="ville">Ville</form:label>
 																																				<form:input
@@ -215,18 +289,24 @@
 																																				/>
 
 																																	</div>
-																																	<div
-																																				class="form-group col-md-2 offset-1 "
-																																	>
+
+																																	<!-- formulaire pour le code postal de la ville -->
+																																	<div class="form-group col-md-2 offset-1 ">
 																																				<form:label path="CodePostal">Code Postal</form:label>
 																																				<form:input
-																																							type="number"
 																																							class="form-control text-secondary"
 																																							path="codePostal"
+																																				/>
+																																				<!-- gestion des validations : messages d'erreurs -->
+																																				<form:errors
+																																							path="codePostal"
+																																							cssClass="error"
 																																				/>
 																																	</div>
 
 																														</div>
+
+																														<!-- formulaire pour les commentaires -->
 																														<div
 																																	class="form-row border rounded shadow p-3 mb-3 bg-white"
 																														>
@@ -239,12 +319,15 @@
 																																				/>
 																																	</div>
 																														</div>
+
+																														<!-- bouton de validation -->
 																														<div class="row justify-content-center">
 																																	<button
 																																				type="submit"
-																																				class="btn btn-primary "
+																																				class="btn btn-primary col-3 "
 																																	>Valider</button>
 																														</div>
+
 																											</form:form>
 																								</div>
 																					</div>

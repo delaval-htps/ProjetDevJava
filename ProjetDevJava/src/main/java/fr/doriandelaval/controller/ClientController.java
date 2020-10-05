@@ -2,10 +2,16 @@ package fr.doriandelaval.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +36,14 @@ public class ClientController {
 				// ses methodes ( instance de type interface ClientService)
 
 	private ClientService clientService;
+
+	// declarer un initBinder pour traiter trim() les chaines entrantes
+	// resoudre un souci de validation des espaces dans les chaines
+	@InitBinder
+	private void initBinder(WebDataBinder dataBinder) {
+		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+	}
 
 	/**
 	 * URL mapping : /list . Renvoie la liste de tous les clients
@@ -98,18 +112,28 @@ public class ClientController {
 	/**
 	 * retour de validation du formulaire de modification d'un client method post
 	 * 
-	 * @param client : paramétre permettant de d'utiliser les tags form:from de
-	 *               spring et hydrater directement le client ( creation du client
-	 *               implicite )
+	 * @param client        : paramétre permettant de d'utiliser les tags form:from
+	 *                      de spring et hydrater directement le client ( creation
+	 *                      du client implicite )
+	 * 
+	 * @param bindingResult pour verifier la validation avec hibernate des données
+	 *                      fournis dans le formulaire
 	 * 
 	 * @return la jsp de la liste des clients ainsi modifiée ( redirection )
 	 */
 	@PostMapping("/update")
-	public String updateForm(@ModelAttribute("updateClient") Client client) {
+	public String updateForm(@Valid @ModelAttribute("updateClient") Client client, BindingResult theBindingResult) {
 
-		clientService.saveClient(client);
+		if (theBindingResult.hasErrors()) {
+			System.out.println("***********");
+			System.out.println(theBindingResult.getAllErrors());
+			return ("/updateClient");
+		} else {
 
-		return ("redirect:/client/list");
+			clientService.saveClient(client);
+
+			return ("redirect:/client/list");
+		}
 	}
 
 	/**

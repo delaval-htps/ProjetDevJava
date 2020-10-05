@@ -20,7 +20,7 @@ databinding
 
 databinding avec spring avec **@ModelAttribut("String de désignation", class instance)**  en parametre pour directement recupérer dans une jsp un client a updater ou un nouveau client.
 
- .. code-block:: java
+.. code-block:: java
 
     @PostMapping("/update")
     public String updateForm(@ModelAttribute("updateClient") Client client) {
@@ -28,19 +28,18 @@ databinding avec spring avec **@ModelAttribut("String de désignation", class in
         return ("redirect:/client/list");
     }
 
- .. note:: 
-    Ne pas oublier d'utiliser les tags <form:form> de spring avec modelAttribut pour faire le binding !
+.. note:: Ne pas oublier d'utiliser les tags <form:form> de spring avec modelAttribut pour faire le binding !
 
 
-.. code-block::  html
+.. code-block::  
 
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
     <form:form action="processForm" modelAttribute="utilisateur" >
-        Prénom: <form:input path="prenom" />
-        <br><br>
-        Nom: <form:input path="nom" />
-        <br><br>
-        <input type="submit" value="valider"/>
+    Prénom: <form:input path="prenom" />
+    <br><br>
+    Nom: <form:input path="nom" />
+    <br><br>
+    <input type="submit" value="valider"/>
     </form:form>
 
 il faut donc pour persister des modification ou un nouveeu client :
@@ -88,6 +87,7 @@ type="hidden"
 path="id"
 />
 
+il en est de meme avec les photos si le champ n'est pas renseigné en form:input alors la photo est perdue !!!!!!!
 
 couche DAO :
 ============
@@ -95,8 +95,31 @@ couche DAO :
 
 
 
-hibernate permet d'utiliser la methode SaveOrUpdate avec spring pour persister les clients ! 
+* hibernate permet d'utiliser la methode SaveOrUpdate avec spring pour persister les clients ! 
 
-probleme de parse entre integer et character et la datetime 
+* probleme de parse entre integer et character et la datetime 
+
+validation des données pour formulaire
+======================================
+
+* utilisation des annotaions dans la classe Entity
+* utilisation d'un init binding danqs le controlleur
+* modifications de la jsp avec un <form:errors>
+* modification du controlleur dans le mapping de formulaire : parametre supplementaire binding result
+
+The above error occurs with hibernate validator, need to pay attention
+
+@NotNull and @NotEmpty and @NotBlank
+
+@NotEmpty is used on the collection class
+@NotBlank is used on String
+@NotNull is used on basic types
+
+@NotNull(message = "champ obligatoire")
+@Digits(fraction = 0, integer = 9, message = "le numéro de tel doit être composé de 9 chiffres hors indicatif")
+@Length(min = 9, message = "le numéro de tel doit être composé de 9 chiffres hors indicatif")
+@Column
+private String numeroTel;
+If you use NotEmpty or NotBlank on the base type, the above error will occur.
 
 

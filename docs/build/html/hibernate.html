@@ -19,6 +19,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="ToDolist" href="TodoList.html" />
     <link rel="prev" title="Utilisation de Spring" href="SpringConfig.html" />
     <link rel="shortcut icon" type="image/png" href="_static/py.png" />
     
@@ -33,6 +34,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="Index général"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="TodoList.html" title="ToDolist"
+             accesskey="N">suivant</a> |</li>
         <li class="right" >
           <a href="SpringConfig.html" title="Utilisation de Spring"
              accesskey="P">précédent</a> |</li>
@@ -78,8 +82,7 @@
 <div class="section" id="databinding">
 <h3>databinding<a class="headerlink" href="#databinding" title="Lien permanent vers ce titre">¶</a></h3>
 <p>databinding avec spring avec <strong>&#64;ModelAttribut(«&nbsp;String de désignation&nbsp;», class instance)</strong>  en parametre pour directement recupérer dans une jsp un client a updater ou un nouveau client.</p>
-<blockquote>
-<div><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@PostMapping</span><span class="p">(</span><span class="s">&quot;/update&quot;</span><span class="p">)</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@PostMapping</span><span class="p">(</span><span class="s">&quot;/update&quot;</span><span class="p">)</span>
 <span class="kd">public</span> <span class="n">String</span> <span class="nf">updateForm</span><span class="p">(</span><span class="nd">@ModelAttribute</span><span class="p">(</span><span class="s">&quot;updateClient&quot;</span><span class="p">)</span> <span class="n">Client</span> <span class="n">client</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">clientService</span><span class="p">.</span><span class="na">saveClient</span><span class="p">(</span><span class="n">client</span><span class="p">);</span>
     <span class="k">return</span> <span class="p">(</span><span class="s">&quot;redirect:/client/list&quot;</span><span class="p">);</span>
@@ -90,14 +93,13 @@
 <p class="first admonition-title">Note</p>
 <p class="last">Ne pas oublier d’utiliser les tags &lt;form:form&gt; de spring avec modelAttribut pour faire le binding !</p>
 </div>
-</div></blockquote>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>&lt;%@ taglib prefix=&quot;form&quot; uri=&quot;http://www.springframework.org/tags/form&quot; %&gt;
 &lt;form:form action=&quot;processForm&quot; modelAttribute=&quot;utilisateur&quot; &gt;
-    Prénom: &lt;form:input path=&quot;prenom&quot; /&gt;
-    &lt;br&gt;&lt;br&gt;
-    Nom: &lt;form:input path=&quot;nom&quot; /&gt;
-    &lt;br&gt;&lt;br&gt;
-    &lt;input type=&quot;submit&quot; value=&quot;valider&quot;/&gt;
+Prénom: &lt;form:input path=&quot;prenom&quot; /&gt;
+&lt;br&gt;&lt;br&gt;
+Nom: &lt;form:input path=&quot;nom&quot; /&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;input type=&quot;submit&quot; value=&quot;valider&quot;/&gt;
 &lt;/form:form&gt;
 </pre></div>
 </div>
@@ -160,8 +162,30 @@ path=&nbsp;»id&nbsp;»
 <p class="last">pour ne pas perdre le databinding pour les deux methodes j’utilise la denomination  «&nbsp;updateClient&nbsp;» parceque j’utilise la meme metode updateForm qui utilise en parametre ce updateclietn</p>
 </div>
 </div></blockquote>
-<p>hibernate permet d’utiliser la methode SaveOrUpdate avec spring pour persister les clients !</p>
-<p>probleme de parse entre integer et character et la datetime</p>
+<ul class="simple">
+<li>hibernate permet d’utiliser la methode SaveOrUpdate avec spring pour persister les clients !</li>
+<li>probleme de parse entre integer et character et la datetime</li>
+</ul>
+</div>
+<div class="section" id="validation-des-donnees-pour-formulaire">
+<h3>validation des données pour formulaire<a class="headerlink" href="#validation-des-donnees-pour-formulaire" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li>utilisation des annotaions dans la classe Entity</li>
+<li>utilisation d’un init binding danqs le controlleur</li>
+<li>modifications de la jsp avec un &lt;form:errors&gt;</li>
+<li>modification du controlleur dans le mapping de formulaire : parametre supplementaire binding result</li>
+</ul>
+<p>The above error occurs with hibernate validator, need to pay attention</p>
+<p>&#64;NotNull and &#64;NotEmpty and &#64;NotBlank</p>
+<p>&#64;NotEmpty is used on the collection class
+&#64;NotBlank is used on String
+&#64;NotNull is used on basic types</p>
+<p>&#64;NotNull(message = «&nbsp;champ obligatoire&nbsp;»)
+&#64;Digits(fraction = 0, integer = 9, message = «&nbsp;le numéro de tel doit être composé de 9 chiffres hors indicatif&nbsp;»)
+&#64;Length(min = 9, message = «&nbsp;le numéro de tel doit être composé de 9 chiffres hors indicatif&nbsp;»)
+&#64;Column
+private String numeroTel;
+If you use NotEmpty or NotBlank on the base type, the above error will occur.</p>
 </div>
 </div>
 </div>
@@ -182,11 +206,15 @@ path=&nbsp;»id&nbsp;»
 <li class="toctree-l2"><a class="reference internal" href="#databinding-hibernate-spring">databinding hibernate Spring</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="TodoList.html">ToDolist</a></li>
 </ul>
 
   <h4>Sujet précédent</h4>
   <p class="topless"><a href="SpringConfig.html"
                         title="Chapitre précédent">Utilisation de Spring</a></p>
+  <h4>Sujet suivant</h4>
+  <p class="topless"><a href="TodoList.html"
+                        title="Chapitre suivant">ToDolist</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Recherche rapide</h3>
     <div class="searchformwrapper">
@@ -209,6 +237,9 @@ path=&nbsp;»id&nbsp;»
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="Index général"
              >index</a></li>
+        <li class="right" >
+          <a href="TodoList.html" title="ToDolist"
+             >suivant</a> |</li>
         <li class="right" >
           <a href="SpringConfig.html" title="Utilisation de Spring"
              >précédent</a> |</li>

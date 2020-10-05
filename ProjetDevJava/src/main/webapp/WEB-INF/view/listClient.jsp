@@ -40,13 +40,13 @@
 												class="col  "
 									>
 												<div class="row">
-															<div class="col-12 p-0 ">
+															<div class="col-12 p-0">
 																		<%@include file="/WEB-INF/view/nav.jsp"%>
 															</div>
 
-															<div class="col-12 p-3 ">
+															<div class="col-12 ">
 
-																		<div class="card shadow p-3 mb-5 bg-white rounded">
+																		<div class="card shadow  mb-5 bg-white rounded">
 
 																					<div class="card-header listClientHeader ">
 																								<div class="row">

@@ -96,8 +96,8 @@
 			<version>0.9.1.2</version>
 		</dependency>
 
-		<!-- pour valider l'annotation @AnnotationDrivenConfig et faire une config 
-			class webmvc + xml pour hibernate -->
+		<!-- pour valider l'annotation @AnnotationDrivenConfig et faire une config class webmvc + xml pour hibernate -->
+	<!-- pour les annotaions de validation de formulaire avec hibernate -->
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
