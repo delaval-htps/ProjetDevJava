@@ -20,7 +20,8 @@ Cette application permettra d'enregistrer et optimiser les intéractions entre l
    SQL
    mavenDependence
    SpringConfig
-   hibernate.rst
+   hibernate
+   TodoList
 
 
 Indices and tables

@@ -7,7 +7,10 @@
 			prefix="spring"
 			uri="http://www.springframework.org/tags"
 %>
-
+<%@ taglib
+			prefix="c"
+			uri="http://java.sun.com/jsp/jstl/core"
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,12 +59,33 @@
 																					<div class="card m-3 shadow bg-white rounded">
 
 																								<div class="card-header text-secondary">
+																											
+																											<div class="row">
 
+																														<c:if
+																																	test="${not empty updateClient.photo }"
+																														>
+																																	<img
+																																				class="rounded-circle "
+																																				height="58"
+																																				width="58"
+																																				src="${pageContext.request.contextPath}/resources/images/photos/${updateClient.photo}"
+																																				alt="photo"
+																																	/>
+																														</c:if>
 
+																														<h1 class="display-5 ml-3">
+																																	<c:if test="${updateClient.id gt 0 }"> [${updateClient.nom}
+																														${updateClient.prenom}]</c:if>
 
-																											<h1 class="display-5">[${updateClient.nom}
-																														${updateClient.prenom}]</h1>
+																																	<c:if test="${updateClient.id == 0 }">[Création d'un nouveau client]</c:if>
+																														</h1>
+																														
+																														<span
+																																	class="align-self-center ml-auto text-danger"
+																														>Veuillez modifier/remplir les champs</span>
 
+																											</div>
 																								</div>
 
 																								<div class="card-body text-primary">
@@ -120,10 +144,24 @@
 																																				</div>
 																																				<div class="form-group col-md-2 ">
 																																							<form:label path="etatCustomer">Type de Contact</form:label>
-																																							<form:input
-																																										class="form-control text-secondary"
-																																										path="etatCustomer"
-																																							/>
+																																							<%-- 																																							<form:input --%>
+																																							<%-- 																																										class="form-control text-secondary" --%>
+																																							<%-- 																																										path="etatCustomer" --%>
+																																							<%-- 																																							/> --%>
+																																							<form:select path="etatCustomer">
+																																										<form:option
+																																													value="C"
+																																													label="Client"
+																																										/>
+																																										<form:option
+																																													value="P"
+																																													label="Prospect"
+																																										/>
+																																										<form:option
+																																													value="F"
+																																													label="Fournisseur"
+																																										/>
+																																							</form:select>
 																																				</div>
 
 																																				<div class="form-group col-md-3">

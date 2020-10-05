@@ -69,15 +69,13 @@
 																					<div class="card-body">
 
 																								<table class=" table-hover table  ">
-																											<caption>
-																														Liste des Clients <br />Image par <a
+																											<caption >
+																													Image par <a
 																																	href="https://pixabay.com/fr/users/whitesession-4645995/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2756210"
-																														>Angelo Esslinger</a> de <a
-																																	href="https://pixabay.com/fr/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2756210"
-																														>Pixabay</a>Image par <a
+																														>Angelo Esslinger</a> et <a
 																																	href="https://pixabay.com/fr/users/nastya_gepp-3773230/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3560917"
 																														>Anastasia Gepp</a> de <a
-																																	href="https://pixabay.com/fr/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3560917"
+																																	href="https://pixabay.com/fr/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2756210"
 																														>Pixabay</a>
 																											</caption>
 																											<thead class="thead">
