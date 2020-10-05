@@ -48,10 +48,12 @@
 
 															<div class="col-12 p-3 ">
 																		<div class="card mb-3 shadow p-3 mb-5 rounded">
-																				<div class="card-header rounded shadow-sm text-center">
-																														<h1 class="card-title display-5">${selectClient.prenom }
-																																	${selectClient.nom}</h1>
-																											</div>
+																					<div
+																								class="card-header rounded shadow-sm text-center"
+																					>
+																								<h1 class="card-title display-5">${selectClient.prenom }
+																											${selectClient.nom}</h1>
+																					</div>
 																					<div class="row no-gutters">
 																								<div class="col-md-3 m-auto text-center">
 																											<img
@@ -63,7 +65,7 @@
 																											>
 																								</div>
 																								<div class="col-md-7">
-																									
+
 																											<div class="card-body">
 																														<table
 																																	class="table-borderless  table-sm mx-auto "
@@ -143,13 +145,67 @@
 																																	role="button"
 																														>Modifier</a>
 																											</p>
-																											<p>
-																														<a
-																																	class="btn btn-outline-danger btn-sm btn-block"
-																																	href="delete?id=${selectClient.id }"
-																																	role="button"
-																														>Supprimer</a>
-																											</p>
+
+																											<!-- modal de bootstrap pour valider la suppression d'un client -->
+																											<!-- Button trigger modal -->
+																											<button
+																														type="button"
+																														class=" btn-outline-danger btn-sm btn-block"
+																														data-toggle="modal"
+																														data-target="#staticBackdrop"
+																											>Supprimer</button>
+
+																											<!-- Modal -->
+																											<div
+																														class="modal fade"
+																														id="staticBackdrop"
+																														data-backdrop="static"
+																														data-keyboard="false"
+																														tabindex="-1"
+																														aria-labelledby="staticBackdropLabel"
+																														aria-hidden="true"
+																											>
+																														<div class="modal-dialog">
+																																	<div class="modal-content">
+																																				<div class="modal-header">
+																																							<h5
+																																										class="modal-title text-danger"
+																																										id="staticBackdropLabel"
+																																							>Suppresion Du Client:
+																																										${selectClient.nom}
+																																										${selectClient.prenom}</h5>
+																																							<button
+																																										type="button"
+																																										class="close"
+																																										data-dismiss="modal"
+																																										aria-label="Close"
+																																							>
+																																										<span aria-hidden="true">&times;</span>
+																																							</button>
+																																				</div>
+																																				<div
+																																							class="modal-body text-secondary"
+																																				>
+																																							Êtes vous sûr de vouloir
+																																							supprimer ce client!<br />Ses
+																																							données seront effacées et non
+																																							récupérables
+																																				</div>
+																																				<div class="modal-footer">
+																																							<button
+																																										type="button"
+																																										class="btn btn-sm btn-secondary"
+																																										data-dismiss="modal"
+																																							>Annuler</button>
+																																							<a
+																																										class="btn btn-danger btn-sm "
+																																										href="delete?id=${selectClient.id }"
+																																										role="button"
+																																							>Supprimer</a>
+																																				</div>
+																																	</div>
+																														</div>
+																											</div>
 																								</div>
 																					</div>
 																		</div>

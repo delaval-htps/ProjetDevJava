@@ -59,7 +59,7 @@
 																					<div class="card m-3 shadow bg-white rounded">
 
 																								<div class="card-header text-secondary">
-																											
+
 																											<div class="row">
 
 																														<c:if
@@ -80,7 +80,7 @@
 
 																																	<c:if test="${updateClient.id == 0 }">[Création d'un nouveau client]</c:if>
 																														</h1>
-																														
+
 																														<span
 																																	class="align-self-center ml-auto text-danger"
 																														>Veuillez modifier/remplir les champs</span>
@@ -144,10 +144,7 @@
 																																				</div>
 																																				<div class="form-group col-md-2 ">
 																																							<form:label path="etatCustomer">Type de Contact</form:label>
-																																							<%-- 																																							<form:input --%>
-																																							<%-- 																																										class="form-control text-secondary" --%>
-																																							<%-- 																																										path="etatCustomer" --%>
-																																							<%-- 																																							/> --%>
+																																		
 																																							<form:select path="etatCustomer">
 																																										<form:option
 																																													value="C"
