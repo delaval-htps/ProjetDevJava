@@ -36,12 +36,12 @@ public class Client implements Serializable {
 	*/
 	private static final long serialVersionUID = 1L;
 
-//attributs
+//------------------------ attributs ------------------------------------
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private int id;
+	private Long id;
 
 	@Column
 	private String nomSociete;
@@ -104,13 +104,13 @@ public class Client implements Serializable {
 	@Column
 	private String commentaire;
 
-	// constructeur
+//--------------------------------------- constructeurs ----------------------------------------
 
 	public Client() {
 
 	}
 
-	public Client(int id, String nomSociete, String photo, @NotNull String nom, @NotNull String prenom, String adresse,
+	public Client(Long id, String nomSociete, String photo, @NotNull String nom, @NotNull String prenom, String adresse,
 			String codePostal, String ville, @NotNull String numeroTel, String email, Character etatCustomer,
 			@NotNull Date dateContact, String commentaire) {
 		super();
@@ -128,14 +128,15 @@ public class Client implements Serializable {
 		this.dateContact = dateContact;
 		this.commentaire = commentaire;
 	}
-	// getter & setters
+
+//-------------------------------------- getter & setters ------------------------------------------
 
 	/**
 	 * retourne l'id du client
 	 * 
 	 * @return int id
 	 */
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -144,7 +145,7 @@ public class Client implements Serializable {
 	 * 
 	 * @param id
 	 */
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

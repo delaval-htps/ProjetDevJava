@@ -1,0 +1,305 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Rest API &#8212; Documentation Projet-Dev-Java 1</title>
+    <link rel="stylesheet" href="_static/myStyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="ToDolist" href="TodoList.html" />
+    <link rel="prev" title="hibernate" href="hibernate.html" />
+    <link rel="shortcut icon" type="image/png" href="_static/py.png" />
+    
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    
+     
+
+  </head><body>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Index général"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="TodoList.html" title="ToDolist"
+             accesskey="N">suivant</a> |</li>
+        <li class="right" >
+          <a href="hibernate.html" title="hibernate"
+             accesskey="P">précédent</a> |</li>
+    <li><img src="_static/py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://www.python.org/">Python</a> &#187;</li>
+    
+    <a href="index.html">Documentation Projet-Dev-Java 1</a> &#187;
+    
+
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="search.html" method="get">
+          <input placeholder="Recherche rapide" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+         |
+    </li>
+
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="rest-api">
+<h1>Rest API<a class="headerlink" href="#rest-api" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="objectif-de-creation-d-un-rest-api">
+<h2>Objectif de création d’un REST API<a class="headerlink" href="#objectif-de-creation-d-un-rest-api" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Voici ce que doit permettre de faire le Rest API:</p>
+<ul class="simple">
+<li>requete avec la methode GET sur l’URI /api/client retourne la liste des tous les clients</li>
+<li>requete avec la methode GET sur l’URI /api/client/1 retourne  le client avec l’id n°1</li>
+<li>requete avec la methode POST sur l’URI /api/client avec un nouveau client en json, doit créer nouveau client</li>
+<li>requete avec la methode PUT sur l’URI /api/client/3 avec un client objet en json , doit updater le client avec l’id  3</li>
+<li>requete avec la methode DELETE sur l’URI /api/client/4 doit supprimer le client avec l’id 4</li>
+<li>requete avec la methode DELETE sur l’URI /api/client/ doit supprimer tous les clients</li>
+</ul>
+</div>
+<div class="section" id="creation-d-un-restcontroller">
+<h2>Création d’un &#64;RestController<a class="headerlink" href="#creation-d-un-restcontroller" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Pour mettre en place notre REST API , nous devons implémenter un controleur «&nbsp;REST&nbsp;» avec l’annotation &#64;RestControler pour que spring puisse l’utiliser.
+Il va nous permettre de mapper les URL dédiées uniquement a notre rest API:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.doriandelaval.controller</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="p">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;api&quot;</span><span class="p">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RestApiController</span> <span class="p">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">ClientService</span> <span class="n">clientService</span><span class="p">;</span>
+
+<span class="c1">//-------------------------- Retrieve all clients-----------------------</span>
+    <span class="cm">/**</span>
+<span class="cm">     * retourne la liste des clients en format json grace a la dependance jackson</span>
+<span class="cm">     * pour formater la classe client (POJO) en fichier json</span>
+<span class="cm">     *</span>
+<span class="cm">     * @return la liste de tous les clients</span>
+<span class="cm">     */</span>
+    <span class="nd">@GetMapping</span><span class="p">(</span><span class="s">&quot;/client&quot;</span><span class="p">)</span>
+    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Client</span><span class="o">&gt;</span> <span class="nf">getClients</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">clientService</span><span class="p">.</span><span class="na">getClients</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="c1">//-------------------------- Retrieve one client By id------------------------</span>
+    <span class="cm">/**</span>
+<span class="cm">     * retourne le client selectionné par son id passé en parametre en GET sous</span>
+<span class="cm">     * forme de fichier json grace à jackson</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param clientId le @PathVariable donné en parametre dans la request get</span>
+<span class="cm">     * @return le client avec l&#39;id donnée en param dans la requete get</span>
+<span class="cm">     */</span>
+    <span class="nd">@GetMapping</span><span class="p">(</span><span class="s">&quot;/client/{id}&quot;</span><span class="p">)</span>
+    <span class="kd">public</span> <span class="n">Client</span> <span class="nf">getClientById</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;id&quot;</span><span class="p">)</span> <span class="n">Long</span> <span class="n">clientId</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">Client</span> <span class="n">client</span> <span class="o">=</span> <span class="n">clientService</span><span class="p">.</span><span class="na">getClient</span><span class="p">(</span><span class="n">clientId</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">client</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">client</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">ClientNotFoundException</span><span class="p">(</span><span class="s">&quot;le client avec l&#39;id: &quot;</span> <span class="o">+</span> <span class="n">clientId</span> <span class="o">+</span> <span class="s">&quot; n&#39;est pas dans la liste&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="c1">//---------------------- create a client method post ---------------------------</span>
+    <span class="cm">/**</span>
+<span class="cm">     * enregistre un nouveau client entré en version fichier json</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param client le nouveau client sous format json a enregistrer</span>
+<span class="cm">     */</span>
+    <span class="nd">@PostMapping</span><span class="p">(</span><span class="s">&quot;/client&quot;</span><span class="p">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">createClient</span><span class="p">(</span><span class="nd">@RequestBody</span> <span class="n">Client</span> <span class="n">client</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">clientService</span><span class="p">.</span><span class="na">saveClient</span><span class="p">(</span><span class="n">client</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="c1">//---------------------- update a client methode PUT ------------------------------</span>
+    <span class="cm">/**</span>
+<span class="cm">     * modifie le client de la bdd avec l&#39;id donnée en parametre de la requete avec</span>
+<span class="cm">     * les valeurs données sous format json ne pas oublier de renseigner également</span>
+<span class="cm">     * les données non null nom prénom numéroTel et dateContact: obligatoire</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param id     identifiant du client a modifer passé en parametre de la</span>
+<span class="cm">     *               requete</span>
+<span class="cm">     * @param client les données du client a modifer + celles non nul obligatoire</span>
+<span class="cm">     */</span>
+    <span class="nd">@PutMapping</span><span class="p">(</span><span class="s">&quot;/client/{id}&quot;</span><span class="p">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateClient</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">)</span> <span class="kt">long</span> <span class="n">id</span><span class="p">,</span> <span class="nd">@RequestBody</span> <span class="n">Client</span> <span class="n">client</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">Client</span> <span class="n">currentClient</span> <span class="o">=</span> <span class="n">clientService</span><span class="p">.</span><span class="na">getClient</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+
+<span class="c1">//          System.out.println(&quot;**********PutMapping:updateClient by id***********&quot;);</span>
+<span class="c1">//          System.out.println(&quot; id client: &quot; + currentClient.getId() + &quot; nom client:&quot; + currentClient.getNom());</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">currentClient</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// on donne l&#39;id du client que l&#39;on veut modifier au nouveau client pour que le</span>
+            <span class="c1">// saveOrUpdate de la couche DAO puisse savoir si que c&#39;est un update sinon il</span>
+            <span class="c1">// fait</span>
+            <span class="c1">// un save ! surtout si on ne modifie pas l&#39;id dans le put ...</span>
+            <span class="n">client</span><span class="p">.</span><span class="na">setId</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+            <span class="n">clientService</span><span class="p">.</span><span class="na">saveClient</span><span class="p">(</span><span class="n">client</span><span class="p">);</span>
+
+        <span class="p">}</span> <span class="k">else</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">ClientNotFoundException</span><span class="p">(</span><span class="s">&quot;le client a modifier avec l&#39;Id: &quot;</span> <span class="o">+</span> <span class="n">id</span> <span class="o">+</span> <span class="s">&quot; n&#39;est pas dans la liste&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="c1">//----------------------- delete client by id ------------------------------------</span>
+    <span class="cm">/**</span>
+<span class="cm">     * suppression du client avec l&#39;id donné en parametre de la requete</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param id identifiant du client a supprimer donné en parametre de la requete</span>
+<span class="cm">     */</span>
+    <span class="nd">@DeleteMapping</span><span class="p">(</span><span class="s">&quot;/client/{id}&quot;</span><span class="p">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">deleteClient</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">)</span> <span class="kt">long</span> <span class="n">id</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">Client</span> <span class="n">currentClient</span> <span class="o">=</span> <span class="n">clientService</span><span class="p">.</span><span class="na">getClient</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">currentClient</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="n">clientService</span><span class="p">.</span><span class="na">deleteClient</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+        <span class="k">else</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">ClientNotFoundException</span><span class="p">(</span><span class="s">&quot;le client a effacer avec l&#39;Id &quot;</span> <span class="o">+</span> <span class="n">id</span> <span class="o">+</span> <span class="s">&quot; n&#39;est pas dans la liste&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="c1">//------------------------ delete all client -------------------------------------</span>
+    <span class="cm">/**</span>
+<span class="cm">     * supprime tous les clients de la bdd</span>
+<span class="cm">     */</span>
+    <span class="nd">@DeleteMapping</span><span class="p">(</span><span class="s">&quot;/client&quot;</span><span class="p">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">deleteAllClients</span><span class="p">()</span> <span class="p">{</span>
+
+        <span class="n">clientService</span><span class="p">.</span><span class="na">deleteAllClients</span><span class="p">();</span>
+
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="presentation.html">Description des besoins de l’Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SQL.html">Creation de la base de données</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mavenDependence.html">Maven et ses dépendances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SpringConfig.html">Utilisation de Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hibernate.html">hibernate</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Rest API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#objectif-de-creation-d-un-rest-api">Objectif de création d’un REST API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creation-d-un-restcontroller">Création d’un &#64;RestController</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TodoList.html">ToDolist</a></li>
+</ul>
+
+  <h4>Sujet précédent</h4>
+  <p class="topless"><a href="hibernate.html"
+                        title="Chapitre précédent">hibernate</a></p>
+  <h4>Sujet suivant</h4>
+  <p class="topless"><a href="TodoList.html"
+                        title="Chapitre suivant">ToDolist</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Index général"
+             >index</a></li>
+        <li class="right" >
+          <a href="TodoList.html" title="ToDolist"
+             >suivant</a> |</li>
+        <li class="right" >
+          <a href="hibernate.html" title="hibernate"
+             >précédent</a> |</li>
+    <li><img src="_static/py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://www.python.org/">Python</a> &#187;</li>
+    
+    <a href="index.html">Documentation Projet-Dev-Java 1</a> &#187;
+    
+
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="search.html" method="get">
+          <input placeholder="Recherche rapide" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+         |
+    </li>
+
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; <a href="copyright.html">Copyright</a> 2020,www.doriandelaval.fr.
+    <br />
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br />
+    <br />
+
+    Mis à jour le None.
+    
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+
+  </body>
+</html>

@@ -37,14 +37,20 @@ public class ClientController {
 
 	private ClientService clientService;
 
-	// declarer un initBinder pour traiter trim() les chaines entrantes
-	// resoudre un souci de validation des espaces dans les chaines
+//------------------------ init Binder ------------------------------------
+	/**
+	 * declarer un initBinder pour traiter trim() les chaines entrantes resoudre un
+	 * souci de validation des espaces dans les chaines
+	 * 
+	 * @param dataBinder
+	 */
 	@InitBinder
 	private void initBinder(WebDataBinder dataBinder) {
 		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
 		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
 	}
 
+//------------------------------- Liste des Clients -----------------------------------
 	/**
 	 * URL mapping : /list . Renvoie la liste de tous les clients
 	 * 
@@ -52,9 +58,7 @@ public class ClientController {
 	 *              des clients et ainsi pouvir l'utiliser dans la jsp
 	 * @return "listClient" le nom de la jsp qui affiche la liste des clients
 	 */
-
 	@GetMapping("/list")
-
 	public String listClient(Model model) {
 		System.out.println("entree dans le mapping !");
 		List<Client> clients = clientService.getClients();
@@ -67,6 +71,7 @@ public class ClientController {
 		return ("listClient");
 	}
 
+//--------------------------- select client by id----------------------------------------	
 	/**
 	 * renvoie la page selectClient.jsp avec dans le model le client ayant pour id
 	 * l'id entré en paramétre qui est un @RequestParam
@@ -76,11 +81,12 @@ public class ClientController {
 	 * @return le nom de la jsp selectClient pour afficher ce client
 	 */
 	@GetMapping("/select")
-	public String select(@RequestParam("id") int id, Model model) {
+	public String select(@RequestParam("id") Long id, Model model) {
 		model.addAttribute("selectClient", clientService.getClient(id));
 		return ("selectClient");
 	}
 
+//-------------------------------- update Client by Id -------------------------------------
 	/**
 	 * retourne le formulaire d'un client sélectionné dans la liste client avec son
 	 * id récupéré: champ prérempli avec les elements du client selectionné pret
@@ -92,11 +98,12 @@ public class ClientController {
 	 * @return la jsp formulaire pour modifier le client
 	 */
 	@GetMapping("/formClientId")
-	public String updateClient(@RequestParam("id") int id, Model model) {
+	public String updateClient(@RequestParam("id") Long id, Model model) {
 		model.addAttribute("updateClient", clientService.getClient(id));
 		return ("updateClient");
 	}
 
+//------------------------------ Create Client ---------------------------------------
 	/**
 	 * methode retournant le formulaire pour créer un nouveau client
 	 * 
@@ -109,6 +116,7 @@ public class ClientController {
 		return ("updateClient");
 	}
 
+//----------------------------- update Formulaire ----------------------------------------------
 	/**
 	 * retour de validation du formulaire de modification d'un client method post
 	 * 
@@ -136,6 +144,7 @@ public class ClientController {
 		}
 	}
 
+//---------------------------------- deleteClient ----------------------------------------------- 
 	/**
 	 * supprime le client avec l'id entré en parametre
 	 * 
@@ -143,7 +152,7 @@ public class ClientController {
 	 * @return la jsp qui affiche la liste de client (redirection)
 	 */
 	@GetMapping("/delete")
-	public String deleteClient(@RequestParam("id") int id) {
+	public String deleteClient(@RequestParam("id") Long id) {
 		clientService.deleteClient(id);
 		return ("redirect:/client/list");
 	}

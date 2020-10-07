@@ -17,6 +17,7 @@ public class ClientDaoIpml implements ClientDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+//-------------------- retrieve list of client ----------------------
 	/**
 	 * renvoie la liste des clients, utilise une session factory d'hibernate pour
 	 * pouvoir envoyer une requete SQL
@@ -41,6 +42,7 @@ public class ClientDaoIpml implements ClientDao {
 		return clients;
 	}
 
+//------------------------ save client ----------------------------------------
 	/**
 	 * enregistre le client donné en paramétre dans la bdd
 	 * 
@@ -48,6 +50,7 @@ public class ClientDaoIpml implements ClientDao {
 	 */
 	@Override
 	public void saveClient(Client client) {
+
 		Session session = sessionFactory.getCurrentSession();
 		System.out.println("**************************************");
 		System.out.println(client.getId());
@@ -56,6 +59,7 @@ public class ClientDaoIpml implements ClientDao {
 
 	}
 
+//------------------------- retrieve client by Id ---------------------------------
 	/**
 	 * retourne le client avec l'id qui est passé en parametre
 	 * 
@@ -63,17 +67,27 @@ public class ClientDaoIpml implements ClientDao {
 	 * @return le client avec l'id entré en param
 	 */
 	@Override
-	public Client getClient(int id) {
+	public Client getClient(Long id) {
+
 		Session session = sessionFactory.getCurrentSession();
 
 		return (Client) session.get(Client.class, id); // attention nom de class .class avec string ca marche pas
 	}
 
+//---------------------------- delete one client by Id -----------------------
 	@Override
-	public void deleteClient(int id) {
+	public void deleteClient(Long id) {
+
 		Session session = sessionFactory.getCurrentSession();
 
 		session.delete(this.getClient(id));
+	}
+
+//---------------------------- delete all clients-------------------------------
+	@Override
+	public void deleteAllClients() {
+		Session session = sessionFactory.getCurrentSession();
+		session.createQuery("DELETE FROM Client");
 	}
 
 }

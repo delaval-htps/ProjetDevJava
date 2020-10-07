@@ -10,8 +10,10 @@ public interface ClientService {
 
 	void saveClient(Client client);
 
-	void deleteClient(int id);
+	void deleteClient(Long id);
 
-	Client getClient(int id);
+	Client getClient(Long id);
+
+	void deleteAllClients();
 
 }

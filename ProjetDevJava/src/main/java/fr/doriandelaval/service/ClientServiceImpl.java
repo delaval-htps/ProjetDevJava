@@ -16,6 +16,7 @@ public class ClientServiceImpl implements ClientService {
 	@Autowired
 	private ClientDao clientDao;
 
+//------------------------- return list of clients ------------------
 	/**
 	 * renvoie la liste des clients: fait appel a la couche Dao
 	 * 
@@ -28,6 +29,7 @@ public class ClientServiceImpl implements ClientService {
 		return clientDao.getClients();
 	}
 
+//------------------------- saveClient -------------------------
 	/**
 	 * enregistre le nouveau client entré en parametre
 	 * 
@@ -39,6 +41,7 @@ public class ClientServiceImpl implements ClientService {
 		clientDao.saveClient(client);
 	}
 
+//------------------------ getClient(id) ------------------------------
 	/**
 	 * récupére le client avec l'identifiant donné dans la bdd
 	 * 
@@ -47,10 +50,11 @@ public class ClientServiceImpl implements ClientService {
 	 */
 	@Override
 	@Transactional
-	public Client getClient(int id) {
+	public Client getClient(Long id) {
 		return clientDao.getClient(id);
 	}
 
+//----------------------- delete a client with id---------------------------
 	/**
 	 * Supprime le client avec l'id correspondant dans la bdd
 	 * 
@@ -58,8 +62,14 @@ public class ClientServiceImpl implements ClientService {
 	 */
 	@Override
 	@Transactional
-	public void deleteClient(int id) {
+	public void deleteClient(Long id) {
 		clientDao.deleteClient(id);
+	}
+
+//----------------------- delete all clients --------------------------------
+	@Override
+	public void deleteAllClients() {
+		clientDao.deleteAllClients();
 	}
 
 }

@@ -10,8 +10,10 @@ public interface ClientDao {
 
 	void saveClient(Client client);
 
-	Client getClient(int id);
+	Client getClient(Long id);
 
-	void deleteClient(int id);
+	void deleteClient(Long id);
+
+	void deleteAllClients();
 
 }

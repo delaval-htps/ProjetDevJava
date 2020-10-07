@@ -9,6 +9,6 @@ color: #3d659b;
 }
 
 
-div.body{
-	max-width: 50%;
+.document .body{
+	max-width: max-content;
 }

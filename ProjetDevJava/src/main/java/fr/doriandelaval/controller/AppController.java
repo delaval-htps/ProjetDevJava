@@ -24,14 +24,4 @@ public class AppController {
 		return ("index");
 	}
 
-	/**
-	 * association de la vue test.jsp a lURL du projet ="ProjetDevJava/test"
-	 * 
-	 * @return index.jsp la page d'index pricipale
-	 */
-	@GetMapping("/test")
-	public String test() {
-		return ("test");
-	}
-
 }
