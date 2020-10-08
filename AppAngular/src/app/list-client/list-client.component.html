@@ -1,0 +1,51 @@
+<div class="card shadow  mb-5 bg-white rounded">
+
+  <div class="card-header ">
+    <div class="row">
+      <div>
+        <img src="../../assets/images/icones/people.svg" width="28" height="28" alt="" />
+        <span class="h5 align-middle pl-1">Clients</span>
+      </div>
+
+      <a class="btn btn-sm btn-outline-primary ml-auto" href="formNewClient" role="button">Nouveau Client</a>
+
+    </div>
+  </div>
+
+  <div class="card-body">
+
+    <table class=" table-hover table  ">
+      <caption>Image par
+        <a
+          href="https://pixabay.com/fr/users/whitesession-4645995/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2756210">Angelo
+          Esslinger</a> et <a
+          href="https://pixabay.com/fr/users/nastya_gepp-3773230/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3560917">Anastasia
+          Gepp</a> de <a
+          href="https://pixabay.com/fr/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2756210">Pixabay</a>
+      </caption>
+
+      <thead class="thead">
+        <tr>
+          <th scope="col"><input type="checkbox" /></th>
+          <th scope="col"></th>
+          <th scope="col">Nom</th>
+          <th scope="col">Prénom</th>
+          <th scope="col">Numéro Tel</th>
+          <th scope="col">Email</th>
+          <th scope="col">Société</th>
+        </tr>
+      </thead>
+
+      <tbody *ngFor="let client of clients">
+        <tr (click)="selectClient(client)">
+          <td id="tdImgList" class="align-middle text-center"></td>
+          <td class="align-middle"><span class="font-weight-bold font-italic"> {{client.nom}}</span></td>
+          <td class="align-middle">{{client.prenom}}</td>
+          <td class="align-middle">0{{client.numeroTel}}</td>
+          <td class="align-middle">{{client.email}}</td>
+          <td class="align-middle">{{client.nomSociete}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
