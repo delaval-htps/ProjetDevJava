@@ -4,9 +4,10 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ClientServiceComponent } from './client-service/client-service.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ClientServiceComponent],
   imports: [BrowserModule, AppRoutingModule, ClientModule],
   providers: [],
   bootstrap: [AppComponent],

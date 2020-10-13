@@ -4,7 +4,7 @@
 
     <div class="col-12">
 
-      <div class="card mb-3 shadow  mb-3 rounded">
+      <div class="card mb-3 shadow  mb-3 rounded" *ngIf="selectClient != null">
 
         <div class="card-header shadow-sm  mb-3 text-center">
 
@@ -55,6 +55,7 @@
                   <tr>
                     <td>Status du Contact:</td>
                     <td class="text-secondary">
+
                       {{selectClient.etatCustomer}}
                     </td>
                   </tr>
@@ -76,8 +77,8 @@
             <div class="col-lg-2 text-center m-auto">
 
               <p>
-                <a class="btn btn-outline-success btn-sm btn-block" href="formClientId?id={{selectClient.id }}"
-                  role="button">Modifier</a>
+                <button class="btn btn-outline-success btn-sm btn-block" type="button"
+                  (click)="updateClient()">Modifier</button>
               </p>
 
               <!-- modal de bootstrap pour valider la suppression d'un client -->
@@ -106,13 +107,30 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Annuler</button>
-                    <a class="btn btn-danger btn-sm " href="delete?id={{selectClient.id }}" role="button">Supprimer</a>
+                    <a class="btn btn-danger btn-sm " href="clientDelete" role="button">Supprimer</a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="card mb-3 shadow  mb-3 rounded" *ngIf="selectClient == null">
+        <div class="card-header shadow-sm  mb-3 text-center">
+
+          <h3 class="card-title m-0 p-0">Problème: le client selectionné n'exite pas !</h3>
+        </div>
+
+        <div class="card-body p-0">
+
+          <div class="row no-gutters">
+
+            <div class="col-lg-3 m-auto text-center"><a href="clients">veuillez retouner sur la liste des clients !</a>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
 

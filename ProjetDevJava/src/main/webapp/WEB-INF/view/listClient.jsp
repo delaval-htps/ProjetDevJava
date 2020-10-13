@@ -80,9 +80,7 @@
 																											</caption>
 																											<thead class="thead">
 																														<tr>
-																																	<th scope="col"><input
-																																				type="checkbox"
-																																	/></th>
+																																
 																																	<th scope="col"></th>
 																																	<th scope="col">Nom</th>
 																																	<th scope="col">Prénom</th>
@@ -99,10 +97,6 @@
 																														>
 
 																																	<tr data-href="select?id=${client.id}">
-
-																																				<td class="align-middle"><input
-																																							type="checkbox"
-																																				/></td>
 
 																																				<td
 																																							id="tdImgList"
