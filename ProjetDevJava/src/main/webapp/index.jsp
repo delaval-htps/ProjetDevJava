@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>ProjetCrmDelaval</title>
+<link rel="icon" href="${pageContext.request.contextPath}/resources/favicon.ico" type="image/x-icon" />
 <meta charset="utf8" />
 <meta
 			name="viewport"
