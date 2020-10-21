@@ -1,0 +1,5 @@
+INDEX VERSION 1.131
+/home/delaval/Documents/ProjetDevJava/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/109081998.index
+/ProjetDevJava/src/main/java
+/home/delaval/Documents/ProjetDevJava/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/1801557623.index
+/ProjetDevJava/src/main/java

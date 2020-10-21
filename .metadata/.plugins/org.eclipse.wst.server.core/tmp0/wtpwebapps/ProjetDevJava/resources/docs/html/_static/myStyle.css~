@@ -1,0 +1,14 @@
+@import url("pydoctheme.css");
+
+div.body h1 {
+color: #3d659b;
+}
+
+div.body h2{
+color: #3d659b;
+}
+
+
+div.body{
+	max-width: 90%;
+}

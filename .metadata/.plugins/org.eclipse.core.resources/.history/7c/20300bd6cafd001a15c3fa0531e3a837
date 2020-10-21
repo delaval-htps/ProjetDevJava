@@ -1,0 +1,37 @@
+package fr.doriandelaval.config;
+
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+/**
+ * Class de configuration Spring qui reprends les informations habituellement
+ * dans un fichier web.xml: elle permet de définir dans quelle classe se trouve
+ * la configuration du dispatcherServlet de Spring grace à la methode
+ * getServletConfigClass() qui renvoie un tableau de class de configuration
+ * avec, dans notre cas, la class config AppConfig elle permet également de
+ * definir le mapping du dispatcher Servlet grace à la methode
+ * getServletMappings() qui retourne un tableau de String correspondant au URL
+ * d'écoute que nous voulons définir
+ * 
+ * @author delaval
+ *
+ */
+public class SpringMvcDispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
+	@Override
+	protected Class<?>[] getRootConfigClasses() {
+		return new Class[] { 
+				DataSourceConfig.class // classe de config pour le data source de spring ( elmt de connexion bdd )
+				};
+	}
+
+	@Override
+	protected Class<?>[] getServletConfigClasses() {
+		return new Class[] { MvcConfig.class };
+	}
+
+	@Override
+	protected String[] getServletMappings() {
+		return new String[] { "/" };
+	}
+
+}

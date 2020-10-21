@@ -1,0 +1,10 @@
+127.0.0.1 - - [14/Oct/2020:18:37:05 +0200] "GET / HTTP/1.1" 404 681
+127.0.0.1 - - [14/Oct/2020:18:37:07 +0200] "GET /ProjetDevJava/ HTTP/1.1" 200 7775
+127.0.0.1 - - [14/Oct/2020:18:37:07 +0200] "GET /ProjetDevJava/resources/images/icones/box.svg HTTP/1.1" 200 555
+127.0.0.1 - - [14/Oct/2020:18:37:07 +0200] "GET /ProjetDevJava/resources/images/icones/pencil-square.svg HTTP/1.1" 200 581
+127.0.0.1 - - [14/Oct/2020:18:37:07 +0200] "GET /ProjetDevJava/resources/images/icones/invoice.svg HTTP/1.1" 200 406
+127.0.0.1 - - [14/Oct/2020:18:37:07 +0200] "GET /ProjetDevJava/resources/css/mycss.css HTTP/1.1" 200 959
+127.0.0.1 - - [14/Oct/2020:18:37:07 +0200] "GET /ProjetDevJava/resources/images/icones/people.svg HTTP/1.1" 200 801
+127.0.0.1 - - [14/Oct/2020:18:37:07 +0200] "GET /ProjetDevJava/resources/images/icones/arrow-left-right.svg HTTP/1.1" 200 455
+127.0.0.1 - - [14/Oct/2020:18:37:08 +0200] "GET /ProjetDevJava/resources/images/logoCrm.svg HTTP/1.1" 200 32718
+127.0.0.1 - - [14/Oct/2020:18:37:08 +0200] "GET /ProjetDevJava/resources/favicon.ico HTTP/1.1" 200 15086
