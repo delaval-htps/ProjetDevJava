@@ -219,7 +219,7 @@
 
 																																							<div class="form-group col-md-3 ">
 																																										<form:label path="email">Adresse mail</form:label>
-																																										<form:input
+																																										<form:input type="email"
 																																													class="form-control text-secondary"
 																																													path="email"
 																																										/>
