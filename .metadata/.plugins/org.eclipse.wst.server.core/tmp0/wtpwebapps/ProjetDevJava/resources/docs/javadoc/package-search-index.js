@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"fr.doriandelaval.config"},{"l":"fr.doriandelaval.controller"},{"l":"fr.doriandelaval.dao"},{"l":"fr.doriandelaval.entity"},{"l":"fr.doriandelaval.service"}]

@@ -1,8 +1,0 @@
-INDEX VERSION 1.4+/home/delaval/Documents/ProjetDevJava/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
-1649456938.index
-406750532.index
-3493100585.index
-2834003179.index
-2028301873.index
-1224774024.index
-109081998.index
