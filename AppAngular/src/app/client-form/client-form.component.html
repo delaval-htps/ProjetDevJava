@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="card-header">
+    Modification de {{client.nom}} {{client.prenom}}
+  </div>
+  <form *ngIf="client" (ngSubmit)="onSubmit()" #clientForm="ngForm">
+    <div class="row">
+      <div class="col s8 offset-s2">
+        <div class="card-panel">
+          <!-- nom du client-->
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" class="form-control" id="nom" [(ngModel)]="client.nom" name="nom" #name="ngModel" />
+          </div>
+
+          <!-- prenom du client -->
+          <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" class="form-control" id="prenom" [(ngModel)]="client.prenom" name="prenom"
+              #name="ngModel" />
+          </div>
+
+          <!-- nom de société du client -->
+          <div class="form-group">
+            <label for="nomSociete">nom de Société</label>
+            <input type="text" class="form-control" id="nomSociete" [(ngModel)]="client.nomSociete" name="nomSociete"
+              #name="ngModel" />
+          </div>
+          <!-- Submit button -->
+
+          <button type="submit" class=" btn btn-primary" [disabled]="!clientForm.form.valid">
+            Valider
+          </button>
+
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>

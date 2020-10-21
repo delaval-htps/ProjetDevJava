@@ -1,0 +1,300 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Utilisation de Spring &#8212; Documentation Projet-Dev-Java 1</title>
+    <link rel="stylesheet" href="_static/myStyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="prev" title="Maven et ses dépendances" href="mavenDependence.html" />
+    <link rel="shortcut icon" type="image/png" href="_static/py.png" />
+    
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    
+     
+
+  </head><body>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Index général"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="mavenDependence.html" title="Maven et ses dépendances"
+             accesskey="P">précédent</a> |</li>
+    <li><img src="_static/py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://www.python.org/">Python</a> &#187;</li>
+    
+    <a href="index.html">Documentation Projet-Dev-Java 1</a> &#187;
+    
+
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="search.html" method="get">
+          <input placeholder="Recherche rapide" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+         |
+    </li>
+
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="utilisation-de-spring">
+<h1>Utilisation de Spring<a class="headerlink" href="#utilisation-de-spring" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="pourquoi-spring">
+<h2>Pourquoi Spring?<a class="headerlink" href="#pourquoi-spring" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Dans ce projet , nous avons décidé d’utiliser le framework Spring pour profier du concept de l’inversion de controle et ses injections de dépendance.</p>
+<p>Le but étant d’utiliser Spring pour créer une architecture n-tiers et permettre une liaison faible entre ces n couches.</p>
+<img alt="_images/projetNTiers.png" class="align-center" src="_images/projetNTiers.png" />
+<p><em>Explications:</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><em>la couche [Web] est la couche en contact avec l’utilisateur de l’application Web. Celui-ci interagit avec l’application Web au travers de pages Web visualisées par un navigateur.C’est dans cette couche que se situe Spring MVC</em></li>
+<li><em>la couche [métier] implémente les règles de gestion de l’application, tels que le calcul d’un salaire ou d’une facture.Cette couche utilise des données provenant de l’utilisateur via la couche [Web] et du SGBD via la couche [DAO]</em></li>
+<li><em>la couche [DAO] (Data Access Objects), la couche [ORM] (Object Relational Mapper) et le pilote JDBC gèrent l’accès aux données du SGBD. La couche [ORM] fait un pont entre les objets manipulés par la couche [DAO] et les lignes et les colonnes des tables d’une base de données relationnelle.Nous utiliserons ici l’ORM Hibernate. Il implémente la spécification JPA (Java Persistence API. Par conséquence, la couche [ORM] deviendra abstraite et on pourra implémenter qu’une seule couche DAO utilisant la JPA</em></li>
+</ul>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">notre application de ce fait, deviendra donc une application 3-tiers !</p>
+</div>
+</div></blockquote>
+<img alt="_images/projet3tiers.png" class="align-center" src="_images/projet3tiers.png" />
+</div>
+<div class="section" id="version-config-class">
+<h2>Version: Config Class<a class="headerlink" href="#version-config-class" title="Lien permanent vers ce titre">¶</a></h2>
+<p>C’est un choix voulu, car il me permet d’utiliser toute la puissance de Spring sans avoir de fichier xml (on evite les fautes de frappes, les oublies et cela parait plus clair a la lecture…)</p>
+<p>A la base nous aurions donc du avoir les fichiers suivants pour pouvoir configurer correctement Spring :</p>
+<blockquote>
+<div><ul>
+<li><p class="first">un fichier <strong>Spring-mvc-config-servlet</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+  <span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.springframework.org/schema/beans&quot;</span>
+    <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+    <span class="na">xmlns:context=</span><span class="s">&quot;http://www.springframework.org/schema/context&quot;</span>
+    <span class="na">xmlns:tx=</span><span class="s">&quot;http://www.springframework.org/schema/tx&quot;</span>
+    <span class="na">xmlns:mvc=</span><span class="s">&quot;http://www.springframework.org/schema/mvc&quot;</span>
+    <span class="na">xsi:schemaLocation=</span><span class="s">&quot;</span>
+<span class="s">        http://www.springframework.org/schema/beans</span>
+<span class="s">        http://www.springframework.org/schema/beans/spring-beans.xsd</span>
+<span class="s">        http://www.springframework.org/schema/context</span>
+<span class="s">        http://www.springframework.org/schema/context/spring-context.xsd</span>
+<span class="s">        http://www.springframework.org/schema/mvc</span>
+<span class="s">        http://www.springframework.org/schema/mvc/spring-mvc.xsd</span>
+<span class="s">        http://www.springframework.org/schema/tx</span>
+<span class="s">        http://www.springframework.org/schema/tx/spring-tx.xsd&quot;</span><span class="nt">&gt;</span>
+
+    <span class="c">&lt;!-- Add support for component scanning --&gt;</span>
+    <span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">&quot;com.tld&quot;</span> <span class="nt">/&gt;</span>
+
+    <span class="c">&lt;!-- Add support for conversion, formatting and validation support --&gt;</span>
+    <span class="nt">&lt;mvc:annotation-driven</span> <span class="nt">/&gt;</span>
+
+    <span class="c">&lt;!-- ajout des ressources exterieures --&gt;</span>
+    <span class="nt">&lt;mvc:resources</span> <span class="na">mapping=</span><span class="s">&quot;/resources/**&quot;</span>
+        <span class="na">location=</span><span class="s">&quot;/WEB-INF/resources/&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;/mvc:resources&gt;</span>
+
+    <span class="c">&lt;!-- Define Spring MVC view resolver --&gt;</span>
+    <span class="nt">&lt;bean</span>
+        <span class="na">class=</span><span class="s">&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;prefix&quot;</span> <span class="na">value=</span><span class="s">&quot;/WEB-INF/view/&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;suffix&quot;</span> <span class="na">value=</span><span class="s">&quot;.jsp&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+
+    <span class="c">&lt;!-- Step 1: Define Database DataSource / connection pool --&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;myDataSource&quot;</span>
+        <span class="na">class=</span><span class="s">&quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;</span>
+        <span class="na">destroy-method=</span><span class="s">&quot;close&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;driverClass&quot;</span> <span class="na">value=</span><span class="s">&quot;com.mysql.cj.jdbc.Driver&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;jdbcUrl&quot;</span>
+            <span class="na">value=</span><span class="s">&quot;jdbc:mysql://localhost:3306/crm?useSSL=false&amp;amp;serverTimezone=UTC&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;user&quot;</span> <span class="na">value=</span><span class="s">&quot;padawan&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;password&quot;</span> <span class="na">value=</span><span class="s">&quot;padawan&quot;</span> <span class="nt">/&gt;</span>
+
+        <span class="c">&lt;!-- these are connection pool properties for C3P0 --&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;minPoolSize&quot;</span> <span class="na">value=</span><span class="s">&quot;5&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;maxPoolSize&quot;</span> <span class="na">value=</span><span class="s">&quot;20&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;maxIdleTime&quot;</span> <span class="na">value=</span><span class="s">&quot;30000&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+
+    <span class="c">&lt;!-- Step 2: Setup Hibernate session factory --&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;sessionFactory&quot;</span>
+        <span class="na">class=</span><span class="s">&quot;org.springframework.orm.hibernate5.LocalSessionFactoryBean&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;dataSource&quot;</span> <span class="na">ref=</span><span class="s">&quot;myDataSource&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;packagesToScan&quot;</span> <span class="na">value=</span><span class="s">&quot;com.tld.entity&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hibernateProperties&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;props&gt;</span>
+                <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">&quot;hibernate.dialect&quot;</span><span class="nt">&gt;</span>org.hibernate.dialect.MySQLDialect<span class="nt">&lt;/prop&gt;</span>
+                <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">&quot;hibernate.show_sql&quot;</span><span class="nt">&gt;</span>true<span class="nt">&lt;/prop&gt;</span>
+            <span class="nt">&lt;/props&gt;</span>
+        <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+
+    <span class="c">&lt;!-- Step 3: Setup Hibernate transaction manager --&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;myTransactionManager&quot;</span>
+        <span class="na">class=</span><span class="s">&quot;org.springframework.orm.hibernate5.HibernateTransactionManager&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;sessionFactory&quot;</span> <span class="na">ref=</span><span class="s">&quot;sessionFactory&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+
+    <span class="c">&lt;!-- Step 4: Enable configuration of transactional behavior based on annotations --&gt;</span>
+    <span class="nt">&lt;tx:annotation-driven</span>
+        <span class="na">transaction-manager=</span><span class="s">&quot;myTransactionManager&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/beans&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">et un fichier <strong>web.xml</strong> pour</p>
+</li>
+</ul>
+<blockquote>
+<div><div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+    <span class="nt">&lt;web-app</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="na">xmlns=</span><span class="s">&quot;http://xmlns.jcp.org/xml/ns/javaee&quot;</span> <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd&quot;</span> <span class="na">id=</span><span class="s">&quot;WebApp_ID&quot;</span> <span class="na">version=</span><span class="s">&quot;4.0&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;display-name&gt;</span>demoRevision1<span class="nt">&lt;/display-name&gt;</span>
+
+        <span class="nt">&lt;welcome-file-list&gt;</span>
+    <span class="nt">&lt;welcome-file&gt;</span>index.jsp<span class="nt">&lt;/welcome-file&gt;</span>
+  <span class="nt">&lt;/welcome-file-list&gt;</span>
+
+
+  <span class="nt">&lt;servlet&gt;</span>
+    <span class="nt">&lt;servlet-name&gt;</span>dispatcher<span class="nt">&lt;/servlet-name&gt;</span>
+    <span class="nt">&lt;servlet-class&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="nt">&lt;/servlet-class&gt;</span>
+    <span class="nt">&lt;init-param&gt;</span>
+      <span class="nt">&lt;param-name&gt;</span>contextConfigLocation<span class="nt">&lt;/param-name&gt;</span>
+      <span class="nt">&lt;param-value&gt;</span>/WEB-INF/spring-mvc-config-servlet.xml<span class="nt">&lt;/param-value&gt;</span>
+    <span class="nt">&lt;/init-param&gt;</span>
+    <span class="nt">&lt;load-on-startup&gt;</span>1<span class="nt">&lt;/load-on-startup&gt;</span>
+  <span class="nt">&lt;/servlet&gt;</span>
+  <span class="nt">&lt;servlet-mapping&gt;</span>
+    <span class="nt">&lt;servlet-name&gt;</span>dispatcher<span class="nt">&lt;/servlet-name&gt;</span>
+    <span class="nt">&lt;url-pattern&gt;</span>/<span class="nt">&lt;/url-pattern&gt;</span>
+  <span class="nt">&lt;/servlet-mapping&gt;</span>
+  <span class="nt">&lt;absolute-ordering/&gt;</span>
+
+<span class="nt">&lt;/web-app&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div></blockquote>
+<p>Pour ma part je préfére utiliser la config class caar elle me permet déjà de voir tout de suite dans les sources mes fichiers config de Spring.
+Et je trouve plus élégant de travailler ainsi. Cependant les annotations utilisés dans ces fichers de conf cachent tout le paramétrage complexe de Spring.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="presentation.html">Description des besoins de l’Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SQL.html">Creation de la base de données</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mavenDependence.html">Maven et ses dépendances</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Utilisation de Spring</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pourquoi-spring">Pourquoi Spring?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-config-class">Version: Config Class</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Sujet précédent</h4>
+  <p class="topless"><a href="mavenDependence.html"
+                        title="Chapitre précédent">Maven et ses dépendances</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Index général"
+             >index</a></li>
+        <li class="right" >
+          <a href="mavenDependence.html" title="Maven et ses dépendances"
+             >précédent</a> |</li>
+    <li><img src="_static/py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://www.python.org/">Python</a> &#187;</li>
+    
+    <a href="index.html">Documentation Projet-Dev-Java 1</a> &#187;
+    
+
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="search.html" method="get">
+          <input placeholder="Recherche rapide" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+         |
+    </li>
+
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; <a href="copyright.html">Copyright</a> 2020,www.doriandelaval.fr.
+    <br />
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br />
+    <br />
+
+    Mis à jour le None.
+    
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+
+  </body>
+</html>

@@ -15,10 +15,16 @@ Cette application permettra d'enregistrer et optimiser les intéractions entre l
 
 .. toctree::
    :maxdepth: 2
-   :caption: Sommaire:
 
    presentation
    GitRepository
+   SQL
+   mavenDependence
+   SpringConfig
+   hibernate
+   Restapi
+   TodoList
+
 
 Indices and tables
 ==================
