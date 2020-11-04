@@ -3,6 +3,7 @@
 /***** SidebarMenu *******/
 #sidebarMenu {
 	max-width: max-content;
+	min-height: 100vh;
 	background: rgb(120, 176, 235);
 	background: radial-gradient(circle, rgba(120, 176, 235, 1) 0%,
 		rgba(255, 255, 255, 1) 100%);
@@ -13,8 +14,9 @@
 }
 
 #sidebarMenu .nav-link:hover {
-	color: blue;
-	font-size: 1.05em;
+	color: #4285f4;
+	text-shadow : 2px 2px 2px white;
+	font-size: 1em;
 }
 
 /************ liste de clients *****************/
@@ -22,6 +24,9 @@
 	background: rgb(231, 241, 251);
 	background: linear-gradient(90deg, rgba(231, 241, 251, 1) 49%,
 		rgba(255, 255, 255, 1) 100%);
+}
+.table-responsive tr{
+	height: 60px;
 }
 
 .card-header {
