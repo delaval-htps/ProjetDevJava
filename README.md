@@ -10,3 +10,8 @@ En cours de développement:
 Documentation génerale  développée avec Sphinx pour expliquer le fonctionnement et les points compliqués de l'application
 Documentation Javadoc pour la partie développement Java.
 
+Dernière Mise à jour
+
+Création de la v1.0.3 : correction de l'issue CVE-2020-5421 - Medium Severity Vulnerability sur spring-web-5.2.8.RELEASE.
+Passage à spring framework en version 5.2.12.RELEASE pour corriger la vulnérabilité.
+
